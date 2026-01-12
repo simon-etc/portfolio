@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Nom - Technicien Systemes et Reseaux</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            border: 5px solid white;
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-img i {
+            font-size: 4rem;
+            color: #3498db;
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .header-contact {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .header-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #34495e;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            background: #2c3e50;
+            border-bottom-color: #3498db;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 4px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h2 i {
+            color: #3498db;
+        }
+
+        /* Company Card - SNCF */
+        .company-card {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .company-logo {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .company-logo i {
+            font-size: 3.5rem;
+            color: #3498db;
+        }
+
+        .company-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-info p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .company-description {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid white;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .company-description h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .company-description p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .company-missions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .mission-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mission-item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .mission-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Realizations Grid */
+        .realizations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .realization-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #ecf0f1;
+        }
+
+        .realization-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .realization-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .realization-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .realization-context {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .realization-body {
+            padding: 2rem;
+        }
+
+        .realization-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .realization-section h4 {
+            color: #3498db;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .realization-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .realization-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .realization-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .proof-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border: 1px solid #ecf0f1;
+        }
+
+        .proof-section h4 {
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+
+        .proof-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .proof-image-placeholder {
+            background: #ecf0f1;
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+            border: 2px dashed #bdc3c7;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: #e8f4fd;
+            color: #2980b9;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #d1e7f8;
+        }
+
+        .benefit-box {
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .benefit-box h4 {
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .benefit-box p {
+            color: #2d5016;
+            line-height: 1.6;
+        }
+
+        /* Experience Timeline */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .experience-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-logo {
+            width: 80px;
+            height: 80px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 2px solid #ecf0f1;
+            overflow: hidden;
+            padding: 8px;
+        }
+
+        .experience-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .experience-logo i {
+            color: #3498db;
+            font-size: 2rem;
+        }
+
+        .experience-title {
+            flex: 1;
+        }
+
+        .experience-title h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-title .date {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .experience-title .location {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .experience-content h4 {
+            color: #3498db;
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.05rem;
+        }
+
+        .experience-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-content li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .experience-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .experience-content p {
+            color: #555;
+        }
+
+        /* Skills without percentage bars */
+        .competences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .competence-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #3498db;
+        }
+
+        .competence-card h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .competence-card h3 i {
+            color: #3498db;
+            font-size: 1.6rem;
+        }
+
+        .competence-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .competence-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #2c3e50;
+            border-bottom: 1px solid #ecf0f1;
+            font-weight: 500;
+        }
+
+        .competence-list li:last-child {
+            border-bottom: none;
+        }
+
+        .competence-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .competence-details {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: normal;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        /* Certifications with clickable images */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .certification-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 2px solid #ecf0f1;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .certification-card:hover {
+            border-color: #27ae60;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.15);
+        }
+
+        .certification-icon {
+            font-size: 3rem;
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+
+        .certification-card h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .certification-card p {
+            color: #7f8c8d;
+        }
+
+        .certification-date {
+            color: #3498db;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .certification-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Modal for certification images */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: 2% auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.8)}
+            to {transform: scale(1)}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 50px;
+            color: #f1f1f1;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #bbb;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        .contact-info-text h4 {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info-text p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .contact-info-text a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-info-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: white;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #3498db;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .realizations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-info {
+                text-align: center;
+            }
+
+            .header-contact {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .experience-grid,
+            .competences-grid,
+            .certifications-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-img">
+                    <!-- Remplace par : <img src="images/votre-photo.jpg" alt="Photo de profil"> -->
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h1>Prenom NOM</h1>
+                    <p class="subtitle">Technicien Systemes et Reseaux en Alternance</p>
+                    <div class="header-contact">
+                        <div class="header-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>prenom.nom@email.com</span>
+                        </div>
+                        <div class="header-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>06 XX XX XX XX</span>
+                        </div>
+                        <div class="header-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Tours, France</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-container">
+                <a href="#entreprise" class="nav-link">Entreprise</a>
+                <a href="#realisations" class="nav-link">Realisations</a>
+                <a href="#competences" class="nav-link">Competences</a>
+                <a href="#parcours" class="nav-link">Parcours</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+
+        <main>
+            <!-- ENTREPRISE D'ACCUEIL - SNCF -->
+            <section id="entreprise">
+                <h2><i class="fas fa-building"></i> Mon Entreprise d'Alternance</h2>
+                
+                <div class="company-card">
+                    <div class="company-header">
+                        <div class="company-logo">
+                            <!-- Remplace par : <img src="images/logo-sncf.png" alt="Logo SNCF"> -->
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="company-info">
+                            <h3>SNCF - Societe Nationale des Chemins de fer Francais</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> France | <i class="fas fa-users"></i> +150 000 collaborateurs | <i class="fas fa-industry"></i> Transport ferroviaire</p>
+                        </div>
+                    </div>
+                    
+                    <div class="company-description">
+                        <h4>Presentation de l'entreprise</h4>
+                        <p>
+                            La SNCF est l'entreprise ferroviaire publique francaise, leader europeen du transport de voyageurs et de marchandises. Premier reseau ferroviaire d'Europe avec plus de 30 000 km de lignes, la SNCF assure quotidiennement le transport de millions de voyageurs a travers ses services TGV, Intercites, TER et Transilien.
+                        </p>
+                        <p style="margin-top: 1rem;">
+                            Au-dela du transport, la SNCF gere l'ensemble des infrastructures ferroviaires nationales et developpe des solutions de mobilite innovantes. L'entreprise s'appuie sur un systeme d'information complexe et une infrastructure technique de pointe necessitant une gestion rigoureuse des systemes et reseaux.
+                        </p>
+                    </div>
+
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Missions principales de la SNCF</h4>
+                    <div class="company-missions">
+                        <div class="mission-item">
+                            <h4><i class="fas fa-train"></i> Transport de voyageurs</h4>
+                            <p>15 millions de voyageurs transportes quotidiennement (TGV, Intercites, TER, Transilien)</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-box"></i> Fret ferroviaire</h4>
+                            <p>Transport de marchandises sur le territoire national et europeen</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-wrench"></i> Maintenance infrastructure</h4>
+                            <p>Entretien et modernisation de 30 000 km de voies ferrees et equipements</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-lightbulb"></i> Innovation mobilite</h4>
+                            <p>Developpement de solutions digitales et de mobilite durable</p>
+                        </div>
+                    </div>
+
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem; margin-top: 2rem;">Mes missions en alternance a la SNCF</h4>
+                    <div class="company-missions">
+                        <div class="mission-item">
+                            <h4><i class="fas fa-cog"></i> Administration Systeme</h4>
+                            <p>Gestion et maintenance des serveurs Windows/Linux, supervision des infrastructures informatiques</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-network-wired"></i> Gestion Reseau</h4>
+                            <p>Configuration des equipements reseau, gestion des VLAN et securite perimetrique</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-headset"></i> Support Utilisateur</h4>
+                            <p>Assistance technique niveau 2, resolution d'incidents et gestion des demandes</p>
+                        </div>
+                        <div class="mission-item">
+                            <h4><i class="fas fa-shield-alt"></i> Securite SI</h4>
+                            <p>Application des politiques de securite, gestion des sauvegardes et mises a jour</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REALISATIONS -->
+            <section id="realisations">
+                <h2><i class="fas fa-project-diagram"></i> Mes Realisations et Projets</h2>
+                
+                <div class="realizations-grid">
+                    <!-- Ajoutez ici vos vraies realisations -->
+                    <div class="realization-card">
+                        <div class="realization-header">
+                            <h3><i class="fas fa-server"></i> Votre Projet 1</h3>
+                            <p class="realization-context"><i class="fas fa-building"></i> En entreprise | Date</p>
+                        </div>
+                        <div class="realization-body">
+                            <div class="realization-section">
+                                <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                                <p>Decrivez le contexte de votre projet...</p>
+                            </div>
+
+                            <div class="realization-section">
+                                <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+<ul>
+                                <li>Etape 1 de votre realisation</li>
+                                <li>Etape 2 de votre realisation</li>
+                                <li>Etape 3 de votre realisation</li>
+                            </ul>
+                        </div>
+
+                        <div class="benefit-box">
+                            <h4><i class="fas fa-check-circle"></i> Benefices pour l'entreprise</h4>
+                            <p>Expliquez les benefices concrets de votre solution...</p>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-badge">Technologie 1</span>
+                            <span class="tech-badge">Technologie 2</span>
+                        </div>
+
+                        <div class="proof-section">
+                            <h4><i class="fas fa-image"></i> Preuves et captures</h4>
+                            <div class="proof-images">
+                                <div class="proof-image-placeholder">
+                                    <i class="fas fa-image" style="font-size: 2rem; color: #7f8c8d;"></i><br>
+                                    Screenshot 1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETENCES SANS BARRES -->
+        <section id="competences">
+            <h2><i class="fas fa-star"></i> Competences du Referentiel BTS SIO SISR</h2>
+            
+            <div class="competences-grid">
+                <div class="competence-card">
+                    <h3><i class="fas fa-server"></i> Gerer le patrimoine informatique</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Recenser et identifier les ressources numeriques
+                            <span class="competence-details">Inventaire materiel/logiciel, documentation technique</span>
+                        </li>
+                        <li>
+                            Exploiter des referentiels et normes
+                            <span class="competence-details">Application ITIL, ISO 27001, bonnes pratiques</span>
+                        </li>
+                        <li>
+                            Mettre en place et verifier les niveaux d'habilitation
+                            <span class="competence-details">Gestion des droits Active Directory, RBAC</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="competence-card">
+                    <h3><i class="fas fa-network-wired"></i> Repondre aux incidents et aux demandes</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Collecter, suivre et orienter des demandes
+                            <span class="competence-details">Ticketing, qualification et escalade des incidents</span>
+                        </li>
+                        <li>
+                            Traiter des demandes concernant les applications
+                            <span class="competence-details">Support applicatif, resolution problemes logiciels</span>
+                        </li>
+                        <li>
+                            Traiter des demandes concernant l'infrastructure
+                            <span class="competence-details">Resolution incidents reseau, serveurs, postes clients</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="competence-card">
+                    <h3><i class="fas fa-project-diagram"></i> Developper la presence en ligne</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Participer a la valorisation de l'image de l'organisation
+                            <span class="competence-details">Site web entreprise, presence digitale professionnelle</span>
+                        </li>
+                        <li>
+                            Referencer les services en ligne
+                            <span class="competence-details">SEO, accessibilite, optimisation contenus web</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="competence-card">
+                    <h3><i class="fas fa-cogs"></i> Travailler en mode projet</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Analyser les objectifs et besoins
+                            <span class="competence-details">Cahier des charges, expression des besoins</span>
+                        </li>
+                        <li>
+                            Planifier les activites
+                            <span class="competence-details">Gantt, methodes agiles, gestion des ressources</span>
+                        </li>
+                        <li>
+                            Evaluer les indicateurs de suivi
+                            <span class="competence-details">KPI, tableaux de bord, reporting projet</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="competence-card">
+                    <h3><i class="fas fa-tools"></i> Mettre a disposition des utilisateurs</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Realiser les tests d'integration
+                            <span class="competence-details">Tests fonctionnels, validation avant production</span>
+                        </li>
+                        <li>
+                            Deployer un service
+                            <span class="competence-details">Deploiement serveurs, applications, GPO</span>
+                        </li>
+                        <li>
+                            Accompagner les utilisateurs
+                            <span class="competence-details">Formation, documentation utilisateur, support</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="competence-card">
+                    <h3><i class="fas fa-database"></i> Organiser son developpement professionnel</h3>
+                    <ul class="competence-list">
+                        <li>
+                            Mettre en place son environnement d'apprentissage
+                            <span class="competence-details">Veille technologique, lab personnel, autoformation</span>
+                        </li>
+                        <li>
+                            Mettre en oeuvre des outils collaboratifs
+                            <span class="competence-details">Teams, SharePoint, Git, documentation partagee</span>
+                        </li>
+                        <li>
+                            Developper son projet professionnel
+                            <span class="competence-details">Portfolio, reseau professionnel, certifications</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARCOURS PROFESSIONNEL -->
+        <section id="parcours">
+            <h2><i class="fas fa-road"></i> Mon Parcours Professionnel</h2>
+            
+            <div class="experience-grid">
+                <!-- Alternance SNCF -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-sncf.png" alt="Logo SNCF"> -->
+                            <i class="fas fa-train"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Alternant Technicien Systemes et Reseaux</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Septembre 2024 - Juillet 2026</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> SNCF - Tours</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Missions principales</h4>
+                        <ul>
+                            <li>Administration des serveurs Windows Server et Linux au sein du reseau ferroviaire</li>
+                            <li>Gestion Active Directory : creation comptes, GPO, securite des acces</li>
+                            <li>Configuration et maintenance equipements reseau (switches, routeurs)</li>
+                            <li>Support technique niveau 2 aupres des agents SNCF</li>
+                            <li>Participation aux projets d'infrastructure et de securisation SI</li>
+                            <li>Documentation technique et procedures d'exploitation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage Faculte de Medecine Tours - Decembre 2023 -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-faculte-medecine-tours.png" alt="Logo Faculte"> -->
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Stagiaire Technicien Informatique</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Novembre 2023 - Decembre 2023</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Faculte de Medecine de Tours - Service Informatique</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Missions realisees</h4>
+                        <ul>
+                            <li>Configuration et maintenance des equipements reseau</li>
+                            <li>Depannage informatique sur le parc materiel de la faculte</li>
+                            <li>Support technique aupres des enseignants et etudiants</li>
+                            <li>Installation et configuration de postes de travail</li>
+                            <li>Gestion des incidents techniques</li>
+                            <li>Cablage reseau et verification de la connectivite</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage Mairie Joue-Les-Tours - Juillet 2023 -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-mairie-joue.png" alt="Logo Mairie"> -->
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Stagiaire Technicien Reseau</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Juin 2023 - Juillet 2023</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Mairie de Joue-Les-Tours</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Missions realisees</h4>
+                        <ul>
+                            <li>Mise en place de GLPI pour la gestion des incidents sur une partie de la Mairie</li>
+                            <li>Remplacement de modules GBIC pour la connexion fibre optique</li>
+                            <li>Configuration et maintenance des equipements reseau</li>
+                            <li>Support technique aupres des utilisateurs municipaux</li>
+                        </ul>
+                        <h4>Formations suivies pendant le stage</h4>
+                        <ul>
+                            <li>MOOC SecNumAcademie de l'ANSSI - Sensibilisation a la cybersecurite</li>
+                            <li>Formation avantdecliquer.com - Prevention contre le phishing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage Mairie Joue-Les-Tours - Fevrier 2023 -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-mairie-joue.png" alt="Logo Mairie"> -->
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Stagiaire Technicien Reseau</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Janvier 2023 - Fevrier 2023 (3 semaines)</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Mairie de Joue-Les-Tours</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Missions realisees</h4>
+                        <ul>
+                            <li>Configuration de VLAN sur switches reseau pour segmentation</li>
+                            <li>Support technique niveau 1 et 2 aupres des utilisateurs</li>
+                            <li>Maintenance preventive et curative du parc informatique</li>
+                            <li>Installation et configuration de postes de travail</li>
+                            <li>Gestion des tickets d'incidents via systeme de ticketing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage ICV Informatique -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-icv-informatique.png" alt="Logo ICV"> -->
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Stagiaire Reparateur Informatique</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Juin 2022</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> ICV Informatique - Joue-Les-Tours</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Decouverte du metier de reparateur informatique</h4>
+                        <ul>
+                            <li>Diagnostic et reparation de pannes materielles sur ordinateurs</li>
+                            <li>Demontage et remontage de PC : methodologie et precautions</li>
+                            <li>Remplacement de composants defectueux (disques durs, RAM, ecrans)</li>
+                            <li>Installation et reinstallation de systemes d'exploitation Windows</li>
+                            <li>Nettoyage et maintenance preventive de materiel informatique</li>
+                            <li>Relation client et conseils techniques aupres des particuliers</li>
+                        </ul>
+                        <h4>Competences acquises</h4>
+                        <ul>
+                            <li>Methodologie de diagnostic de pannes hardware</li>
+                            <li>Connaissance approfondie des composants informatiques</li>
+                            <li>Bases de la relation client en environnement technique</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Formation BTS -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <!-- Remplace par : <img src="images/logo-iscb.png" alt="Logo ISCB"> -->
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>BTS SIO option SISR</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> 2024 - 2026</p>
+                            <p class="location"><i class="fas fa-school"></i> ISCB - Tours</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <p>Formation en alternance - Solutions d'Infrastructure, Systemes et Reseaux</p>
+                        <p style="margin-top: 0.5rem;">Apprentissage des competences en administration systeme, gestion reseau, securite informatique et gestion de projet.</p>
+                    </div>
+                </div>
+
+                <!-- Bac SN -->
+                <div class="experience-card">
+                    <div class="experience-header">
+                        <div class="experience-logo">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="experience-title">
+                            <h3>Baccalaureat Systemes Numeriques</h3>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> 2021 - 2024</p>
+                            <p class="location"><i class="fas fa-school"></i> Lycee [Nom] - [Ville]</p>
+                        </div>
+                    </div>
+                    <div class="experience-content">
+                        <h4>Projets et realisations pendant le Bac SN</h4>
+                        <ul>
+                            <li>Projet domotique : installation systeme de surveillance IP avec serveur de stockage local</li>
+                            <li>Cablage reseau informatique : installation complete reseau RJ45 pour salle informatique</li>
+                            <li>Configuration de box reseau et routeur pour petit reseau d'entreprise</li>
+                            <li>Assemblage et depannage de PC : diagnostic pannes materielles</li>
+                            <li>Initiation aux systemes Linux et lignes de commande</li>
+                            <li>Projet Arduino : systeme d'alarme connecte avec capteurs</li>
+                        </ul>
+                        <h4>Competences acquises</h4>
+                        <ul>
+                            <li>Bases solides en electronique et systemes embarques</li>
+                            <li>Comprehension infrastructure reseau physique (cablage structure)</li>
+                            <li>Methodologie de diagnostic et depannage technique</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section id="certifications">
+            <h2><i class="fas fa-certificate"></i> Certifications et Formations</h2>
+            
+            <div class="certifications-grid">
+                <!-- MOOC SecNumAcademie ANSSI -->
+                <div class="certification-card" onclick="openModal('images/certification-secnum.jpg')">
+                    <div class="certification-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>MOOC SecNumAcademie</h3>
+                    <p style="margin: 0.5rem 0;">ANSSI - Agence Nationale de la Securite des Systemes d'Information</p>
+                    <p class="certification-date">Obtenue en Juillet 2023</p>
+                    <span class="certification-badge">Cliquez pour voir le certificat</span>
+                </div>
+
+                <!-- Formation avantdecliquer.com -->
+                <div class="certification-card" onclick="openModal('images/certification-avantdecliquer.jpg')">
+                    <div class="certification-icon">
+                        <i class="fas fa-mouse-pointer"></i>
+                    </div>
+                    <h3>Formation avantdecliquer.com</h3>
+                    <p style="margin: 0.5rem 0;">Sensibilisation au phishing et aux cybermenaces</p>
+                    <p class="certification-date">Obtenue en Juillet 2023</p>
+                    <span class="certification-badge">Cliquez pour voir le certificat</span>
+                </div>
+
+                <!-- PIX -->
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>PIX - Certification Numerique</h3>
+                    <p style="margin: 0.5rem 0;">Certification des competences numeriques</p>
+                    <p class="certification-date">En cours</p>
+                </div>
+
+                <!-- MOOC CNIL -->
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>MOOC CNIL - RGPD</h3>
+                    <p style="margin: 0.5rem 0;">L'atelier RGPD - Protection des donnees personnelles</p>
+                    <p class="certification-date">En cours</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="contact-section">
+                <h2 style="color: white; border-bottom-color: white;"><i class="fas fa-envelope"></i> Me Contacter</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Je suis actuellement en recherche d'opportunites professionnelles. N'hesitez pas a me contacter !</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info-text">
+                            <h4>Email</h4>
+                            <p>prenom.nom@email.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info-text">
+                            <h4>Telephone</h4>
+                            <p>06 XX XX XX XX</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div class="contact-info-text">
+                            <h4>LinkedIn</h4>
+                            <p><a href="#">linkedin.com/in/votrenom</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <div class="contact-info-text">
+                            <h4>GitHub</h4>
+                            <p><a href="#">github.com/votrenom</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-info-text">
+                            <h4>Localisation</h4>
+                            <p>Tours, France</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-file-pdf"></i>
+                        <div class="contact-info-text">
+                            <h4>CV</h4>
+                            <p><a href="documents/CV-prenom-nom.pdf" target="_blank">Telecharger mon CV</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2025 Prenom NOM - Portfolio Professionnel</p>
+        <p style="opacity: 0.8;">Technicien Systemes et Reseaux | BTS SIO SISR - ISCB Tours | Alternance SNCF</p>
+        <div style="margin-top: 1rem;">
+            <a href="#" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+            <a href="mailto:prenom.nom@email.com" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+</div>
+
+<!-- Modal pour afficher les certificats -->
+<div id="certificationModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Active navigation
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // Modal functions for certifications
+    function openModal(imagePath) {
+        const modal = document.getElementById('certificationModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.style.display = 'block';
+        modalImg.src = imagePath;
+    }
+
+    function closeModal() {
+        document.getElementById('certificationModal').style.display = 'none';
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
