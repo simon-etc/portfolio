@@ -26,7 +26,6 @@
             box-shadow: 0 0 30px rgba(0,0,0,0.1);
         }
 
-        /* Header */
         header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
@@ -99,7 +98,6 @@
             gap: 0.5rem;
         }
 
-        /* Navigation */
         nav {
             background: #34495e;
             padding: 0;
@@ -132,7 +130,6 @@
             border-bottom-color: #3498db;
         }
 
-        /* Main Content */
         main {
             padding: 3rem;
             max-width: 1400px;
@@ -174,7 +171,6 @@
             color: #3498db;
         }
 
-        /* Company Card - SNCF */
         .company-card {
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
@@ -247,7 +243,7 @@
 
         .company-missions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -274,10 +270,9 @@
             gap: 0.5rem;
         }
 
-        /* Realizations Grid */
         .realizations-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2.5rem;
             margin-top: 2rem;
         }
@@ -366,27 +361,6 @@
             margin-bottom: 1rem;
         }
 
-        .proof-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .proof-image-placeholder {
-            background: #ecf0f1;
-            height: 150px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 1rem;
-            border: 2px dashed #bdc3c7;
-        }
-
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
@@ -425,10 +399,9 @@
             line-height: 1.6;
         }
 
-        /* Experience Timeline */
         .experience-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -531,10 +504,9 @@
             color: #555;
         }
 
-        /* Skills without percentage bars */
         .competences-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -596,10 +568,9 @@
             display: block;
         }
 
-        /* Certifications with clickable images */
         .certifications-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 2rem;
         }
@@ -654,7 +625,6 @@
             font-weight: 600;
         }
 
-        /* Modal for certification images */
         .modal {
             display: none;
             position: fixed;
@@ -694,7 +664,6 @@
             color: #bbb;
         }
 
-        /* Contact */
         .contact-section {
             background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
             color: white;
@@ -705,7 +674,7 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -751,7 +720,6 @@
             text-decoration: underline;
         }
 
-        /* Footer */
         footer {
             background: #2c3e50;
             color: white;
@@ -769,9 +737,12 @@
             color: #3498db;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 1024px) {
             .realizations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .company-missions {
                 grid-template-columns: 1fr;
             }
         }
@@ -786,7 +757,9 @@
             }
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .profile-section {
@@ -802,11 +775,13 @@
                 justify-content: center;
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
             }
 
             nav a {
                 padding: 1rem;
                 border-bottom: 1px solid rgba(255,255,255,0.1);
+                font-size: 0.9rem;
             }
 
             .experience-grid,
@@ -819,6 +794,67 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .company-info h3 {
+                font-size: 1.6rem;
+            }
+
+            .company-card {
+                padding: 1.5rem;
+            }
+
+            .realizations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .experience-title {
+                text-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .company-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-img {
+                width: 140px;
+                height: 140px;
+            }
+
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .realization-body {
+                padding: 1.5rem;
+            }
+
+            .competence-card {
+                padding: 1.5rem;
+            }
+
+            .experience-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -827,8 +863,8 @@
         <header>
             <div class="profile-section">
                 <div class="profile-img">
-                    <!-- Remplace par : <img src="images/votre-photo.jpg" alt="Photo de profil"> -->
-                    <i class="fas fa-user"></i>
+                    <img src="photo.jpg" alt="Simon ETCHART" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <i class="fas fa-user" style="display: none;"></i>
                 </div>
                 <div class="profile-info">
                     <h1>Simon ETCHART</h1>
@@ -859,15 +895,14 @@
         </nav>
 
         <main>
-            <!-- ENTREPRISE D'ACCUEIL - SNCF -->
             <section id="entreprise">
                 <h2><i class="fas fa-building"></i> SNCF</h2>
                 
                 <div class="company-card">
                     <div class="company-header">
                         <div class="company-logo">
-                            <!-- Remplace par : <img src="images/logo-sncf.png" alt="Logo SNCF"> -->
-                            <i class="fas fa-train"></i>
+                            <img src="logo-sncf.png" alt="Logo SNCF" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-train" style="display: none;"></i>
                         </div>
                         <div class="company-info">
                             <h3>SNCF - Societe Nationale des Chemins de fer Francais</h3>
@@ -927,57 +962,132 @@
                 </div>
             </section>
 
-            <!-- REALISATIONS -->
             <section id="realisations">
                 <h2><i class="fas fa-project-diagram"></i> Mes Realisations et Projets</h2>
                 
                 <div class="realizations-grid">
-                    <!-- Ajoutez ici vos vraies realisations -->
                     <div class="realization-card">
                         <div class="realization-header">
-                            <h3><i class="fas fa-server"></i> Votre Projet 1</h3>
-                            <p class="realization-context"><i class="fas fa-building"></i> En entreprise | Date</p>
+                            <h3><i class="fas fa-server"></i> Mise en place Active Directory avec controle d'acces</h3>
+                            <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Decembre 2024</p>
                         </div>
                         <div class="realization-body">
                             <div class="realization-section">
-                                <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                <p>Decrivez le contexte de votre projet...</p>
-                            </div>
-
-                            <div class="realization-section">
                                 <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-<ul>
-                                <li>Etape 1 de votre realisation</li>
-                                <li>Etape 2 de votre realisation</li>
-                                <li>Etape 3 de votre realisation</li>
+                            <ul>
+                                <li>Installation et configuration d'un serveur Windows Server 2022</li>
+                                <li>Deploiement du role Active Directory Domain Services (AD DS)</li>
+                                <li>Creation de deux comptes utilisateurs avec niveaux d'acces differents</li>
+                                <li>Configuration d'un groupe de securite pour faciliter la gestion des droits</li>
+                                <li>Mise en place de GPO (Group Policy Objects) pour appliquer des politiques de securite</li>
+                                <li>Tests de connexion et verification des restrictions d'acces</li>
                             </ul>
                         </div>
 
                         <div class="benefit-box">
-                            <h4><i class="fas fa-check-circle"></i> Benefices pour l'entreprise</h4>
-                            <p>Expliquez les benefices concrets de votre solution...</p>
+                            <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                            <p><strong>Centralisation de la gestion :</strong> Controle unifie des utilisateurs et groupes depuis une console unique.<br>
+                            <strong>Securite renforcee :</strong> Application automatique des politiques selon les profils, limitation des privileges.<br>
+                            <strong>Scalabilite :</strong> Infrastructure evolutive facilitant l'ajout de nouveaux utilisateurs et politiques.</p>
                         </div>
 
                         <div class="tech-stack">
-                            <span class="tech-badge">Technologie 1</span>
-                            <span class="tech-badge">Technologie 2</span>
+                            <span class="tech-badge">Windows Server 2022</span>
+                            <span class="tech-badge">Active Directory</span>
+                            <span class="tech-badge">GPO</span>
+                            <span class="tech-badge">PowerShell</span>
                         </div>
 
                         <div class="proof-section">
-                            <h4><i class="fas fa-image"></i> Preuves et captures</h4>
-                            <div class="proof-images">
-                                <div class="proof-image-placeholder">
-                                    <i class="fas fa-image" style="font-size: 2rem; color: #7f8c8d;"></i><br>
-                                    Screenshot 1
-                                </div>
-                            </div>
+                            <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                            <p style="color: #555;">Procedure complete disponible prochainement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="realization-card">
+                    <div class="realization-header">
+                        <h3><i class="fas fa-network-wired"></i> Configuration reseau VLAN</h3>
+                        <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
+                    </div>
+                    <div class="realization-body">
+                        <div class="realization-section">
+                            <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                            <p>Segmentation d'un reseau d'entreprise pour isoler les flux et ameliorer la securite.</p>
+                        </div>
+
+                        <div class="realization-section">
+                            <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                            <ul>
+                                <li>Analyse des besoins et conception de l'architecture reseau</li>
+                                <li>Configuration de VLAN sur switches Cisco</li>
+                                <li>Mise en place du routage inter-VLAN</li>
+                                <li>Tests de connectivite et validation</li>
+                            </ul>
+                        </div>
+
+                        <div class="benefit-box">
+                            <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                            <p><strong>Securite amelioree :</strong> Isolation des reseaux sensibles et reduction des risques d'intrusion.<br>
+                            <strong>Performance optimisee :</strong> Reduction du broadcast et meilleure gestion du trafic reseau.</p>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-badge">Cisco</span>
+                            <span class="tech-badge">VLAN</span>
+                            <span class="tech-badge">Routage</span>
+                        </div>
+
+                        <div class="proof-section">
+                            <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                            <p style="color: #555;">Procedure complete disponible prochainement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="realization-card">
+                    <div class="realization-header">
+                        <h3><i class="fas fa-shield-alt"></i> Securisation infrastructure avec pare-feu</h3>
+                        <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
+                    </div>
+                    <div class="realization-body">
+                        <div class="realization-section">
+                            <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                            <p>Protection d'un reseau contre les menaces externes et mise en place de regles de filtrage avancees.</p>
+                        </div>
+
+                        <div class="realization-section">
+                            <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                            <ul>
+                                <li>Installation et configuration d'un pare-feu pfSense</li>
+                                <li>Definition de regles de filtrage par zone</li>
+                                <li>Mise en place de la journalisation</li>
+                                <li>Tests de penetration et validation</li>
+                            </ul>
+                        </div>
+
+                        <div class="benefit-box">
+                            <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                            <p><strong>Protection perimetrique :</strong> Filtrage avance du trafic entrant et sortant.<br>
+                            <strong>Visibilite accrue :</strong> Logs centralises permettant l'analyse des tentatives d'intrusion.<br>
+                            <strong>Conformite :</strong> Respect des bonnes pratiques de securite.</p>
+                        </div>
+
+                        <div class="tech-stack">
+                            <span class="tech-badge">pfSense</span>
+                            <span class="tech-badge">Firewall</span>
+                            <span class="tech-badge">Securite</span>
+                        </div>
+
+                        <div class="proof-section">
+                            <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                            <p style="color: #555;">Procedure complete disponible prochainement</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- COMPETENCES SANS BARRES -->
         <section id="competences">
             <h2><i class="fas fa-star"></i> Competences du Referentiel BTS SIO SISR</h2>
             
@@ -1088,17 +1198,15 @@
             </div>
         </section>
 
-        <!-- PARCOURS PROFESSIONNEL -->
         <section id="parcours">
             <h2><i class="fas fa-road"></i> Mon Parcours Professionnel</h2>
             
             <div class="experience-grid">
-                <!-- Alternance SNCF -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-sncf.png" alt="Logo SNCF"> -->
-                            <i class="fas fa-train"></i>
+                            <img src="logo-sncf.png" alt="Logo SNCF" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-train" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>Alternant Technicien Systemes et Reseaux</h3>
@@ -1119,17 +1227,16 @@
                     </div>
                 </div>
 
-                <!-- Stage Faculte de Medecine Tours - Decembre 2023 -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-faculte-medecine-tours.png" alt="Logo Faculte"> -->
-                            <i class="fas fa-hospital"></i>
+                            <img src="logo-faculte-medecine-tours.png" alt="Logo Faculte" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-hospital" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>Stagiaire Technicien Informatique</h3>
                             <p class="date"><i class="fas fa-calendar-alt"></i> Novembre 2023 - Decembre 2023</p>
-                            <p class="location"><i class="fas fa-map-marker-alt"></i> Faculte de Medecine de Tours - Service Informatique</p>
+                            <p class="location"><i class="fas fa-map-marker-alt"></i> Faculte de Medecine de Tours</p>
                         </div>
                     </div>
                     <div class="experience-content">
@@ -1145,12 +1252,11 @@
                     </div>
                 </div>
 
-                <!-- Stage Mairie Joue-Les-Tours - Juillet 2023 -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-mairie-joue.png" alt="Logo Mairie"> -->
-                            <i class="fas fa-landmark"></i>
+                            <img src="logo-mairie-joue.png" alt="Logo Mairie" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-landmark" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>Stagiaire Technicien Reseau</h3>
@@ -1161,50 +1267,48 @@
                     <div class="experience-content">
                         <h4>Missions realisees</h4>
                         <ul>
-                            <li>Mise en place de GLPI pour la gestion des incidents sur une partie de la Mairie</li>
+                            <li>Mise en place de GLPI pour la gestion des incidents</li>
                             <li>Remplacement de modules GBIC pour la connexion fibre optique</li>
                             <li>Configuration et maintenance des equipements reseau</li>
                             <li>Support technique aupres des utilisateurs municipaux</li>
                         </ul>
-                        <h4>Formations suivies pendant le stage</h4>
+                        <h4>Formations suivies</h4>
                         <ul>
-                            <li>MOOC SecNumAcademie de l'ANSSI - Sensibilisation a la cybersecurite</li>
-                            <li>Formation avantdecliquer.com - Prevention contre le phishing</li>
+                            <li>MOOC SecNumAcademie de l'ANSSI</li>
+                            <li>Formation avantdecliquer.com</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Stage Mairie Joue-Les-Tours - Fevrier 2023 -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-mairie-joue.png" alt="Logo Mairie"> -->
-                            <i class="fas fa-landmark"></i>
+                            <img src="logo-mairie-joue.png" alt="Logo Mairie" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-landmark" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>Stagiaire Technicien Reseau</h3>
-                            <p class="date"><i class="fas fa-calendar-alt"></i> Janvier 2023 - Fevrier 2023 (3 semaines)</p>
+                            <p class="date"><i class="fas fa-calendar-alt"></i> Janvier 2023 - Fevrier 2023</p>
                             <p class="location"><i class="fas fa-map-marker-alt"></i> Mairie de Joue-Les-Tours</p>
                         </div>
                     </div>
                     <div class="experience-content">
                         <h4>Missions realisees</h4>
                         <ul>
-                            <li>Configuration de VLAN sur switches reseau pour segmentation</li>
-                            <li>Support technique niveau 1 et 2 aupres des utilisateurs</li>
-                            <li>Maintenance preventive et curative du parc informatique</li>
+                            <li>Configuration de VLAN sur switches reseau</li>
+                            <li>Support technique niveau 1 et 2</li>
+                            <li>Maintenance du parc informatique</li>
                             <li>Installation et configuration de postes de travail</li>
-                            <li>Gestion des tickets d'incidents via systeme de ticketing</li>
+                            <li>Gestion des tickets d'incidents</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Stage ICV Informatique -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-icv-informatique.png" alt="Logo ICV"> -->
-                            <i class="fas fa-laptop"></i>
+                            <img src="logo-icv-informatique.png" alt="Logo ICV" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-laptop" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>Stagiaire Reparateur Informatique</h3>
@@ -1213,30 +1317,23 @@
                         </div>
                     </div>
                     <div class="experience-content">
-                        <h4>Decouverte du metier de reparateur informatique</h4>
+                        <h4>Missions realisees</h4>
                         <ul>
-                            <li>Diagnostic et reparation de pannes materielles sur ordinateurs</li>
-                            <li>Demontage et remontage de PC : methodologie et precautions</li>
-                            <li>Remplacement de composants defectueux (disques durs, RAM, ecrans)</li>
-                            <li>Installation et reinstallation de systemes d'exploitation Windows</li>
-                            <li>Nettoyage et maintenance preventive de materiel informatique</li>
-                            <li>Relation client et conseils techniques aupres des particuliers</li>
-                        </ul>
-                        <h4>Competences acquises</h4>
-                        <ul>
-                            <li>Methodologie de diagnostic de pannes hardware</li>
-                            <li>Connaissance approfondie des composants informatiques</li>
-                            <li>Bases de la relation client en environnement technique</li>
+                            <li>Diagnostic et reparation de pannes materielles</li>
+                            <li>Demontage et remontage de PC</li>
+                            <li>Remplacement de composants defectueux</li>
+                            <li>Installation de systemes d'exploitation</li>
+                            <li>Maintenance preventive</li>
+                            <li>Relation client et conseils techniques</li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Formation BTS -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
-                            <!-- Remplace par : <img src="images/logo-iscb.png" alt="Logo ISCB"> -->
-                            <i class="fas fa-graduation-cap"></i>
+                            <img src="logo-iscb.png" alt="Logo ISCB" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <i class="fas fa-graduation-cap" style="display: none;"></i>
                         </div>
                         <div class="experience-title">
                             <h3>BTS SIO option SISR</h3>
@@ -1246,11 +1343,9 @@
                     </div>
                     <div class="experience-content">
                         <p>Formation en alternance - Solutions d'Infrastructure, Systemes et Reseaux</p>
-                        <p style="margin-top: 0.5rem;">Apprentissage des competences en administration systeme, gestion reseau, securite informatique et gestion de projet.</p>
                     </div>
                 </div>
 
-                <!-- Bac SN -->
                 <div class="experience-card">
                     <div class="experience-header">
                         <div class="experience-logo">
@@ -1263,54 +1358,43 @@
                         </div>
                     </div>
                     <div class="experience-content">
-                        <h4>Projets et realisations pendant le Bac SN</h4>
+                        <h4>Projets realises</h4>
                         <ul>
-                            <li>Projet domotique : installation systeme de surveillance IP avec serveur de stockage local</li>
-                            <li>Cablage reseau informatique : installation complete reseau RJ45 pour salle informatique</li>
-                            <li>Configuration de box reseau et routeur pour petit reseau d'entreprise</li>
-                            <li>Assemblage et depannage de PC : diagnostic pannes materielles</li>
-                            <li>Initiation aux systemes Linux et lignes de commande</li>
-                            <li>Projet Arduino : systeme d'alarme connecte avec capteurs</li>
-                        </ul>
-                        <h4>Competences acquises</h4>
-                        <ul>
-                            <li>Bases solides en electronique et systemes embarques</li>
-                            <li>Comprehension infrastructure reseau physique (cablage structure)</li>
-                            <li>Methodologie de diagnostic et depannage technique</li>
+                            <li>Projet domotique avec systeme de surveillance IP</li>
+                            <li>Cablage reseau RJ45 complet</li>
+                            <li>Configuration box et routeur</li>
+                            <li>Assemblage et depannage PC</li>
+                            <li>Projet Arduino : systeme d'alarme</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CERTIFICATIONS -->
         <section id="certifications">
             <h2><i class="fas fa-certificate"></i> Certifications et Formations</h2>
             
             <div class="certifications-grid">
-                <!-- MOOC SecNumAcademie ANSSI -->
-                <div class="certification-card" onclick="openModal('images/certification-secnum.jpg')">
+                <div class="certification-card" onclick="openModal('certification-secnum.jpg')">
                     <div class="certification-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>MOOC SecNumAcademie</h3>
-                    <p style="margin: 0.5rem 0;">ANSSI - Agence Nationale de la Securite des Systemes d'Information</p>
+                    <p style="margin: 0.5rem 0;">ANSSI - Sensibilisation a la cybersecurite</p>
                     <p class="certification-date">Obtenue en Juillet 2023</p>
                     <span class="certification-badge">Cliquez pour voir le certificat</span>
                 </div>
 
-                <!-- Formation avantdecliquer.com -->
-                <div class="certification-card" onclick="openModal('images/certification-avantdecliquer.jpg')">
+                <div class="certification-card" onclick="openModal('certification-avantdecliquer.jpg')">
                     <div class="certification-icon">
                         <i class="fas fa-mouse-pointer"></i>
                     </div>
                     <h3>Formation avantdecliquer.com</h3>
-                    <p style="margin: 0.5rem 0;">Sensibilisation au phishing et aux cybermenaces</p>
+                    <p style="margin: 0.5rem 0;">Prevention contre le phishing</p>
                     <p class="certification-date">Obtenue en Juillet 2023</p>
                     <span class="certification-badge">Cliquez pour voir le certificat</span>
                 </div>
 
-                <!-- PIX -->
                 <div class="certification-card">
                     <div class="certification-icon">
                         <i class="fas fa-award"></i>
@@ -1320,38 +1404,35 @@
                     <p class="certification-date">En cours</p>
                 </div>
 
-                <!-- MOOC CNIL -->
                 <div class="certification-card">
                     <div class="certification-icon">
                         <i class="fas fa-user-shield"></i>
                     </div>
                     <h3>MOOC CNIL - RGPD</h3>
-                    <p style="margin: 0.5rem 0;">L'atelier RGPD - Protection des donnees personnelles</p>
+                    <p style="margin: 0.5rem 0;">L'atelier RGPD - Protection des donnees</p>
                     <p class="certification-date">En cours</p>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact">
             <div class="contact-section">
                 <h2 style="color: white; border-bottom-color: white;"><i class="fas fa-envelope"></i> Me Contacter</h2>
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Je suis actuellement en recherche d'opportunites professionnelles. N'hesitez pas a me contacter !</p>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Actuellement en alternance, je reste ouvert aux opportunites professionnelles.</p>
                 
                 <div class="contact-grid">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div class="contact-info-text">
                             <h4>Email</h4>
-                            <p>simonetchart37@gmail.com</p>
+                            <p><a href="mailto:simonetchart37@gmail.com">simonetchart37@gmail.com</a></p>
                         </div>
-                    </div>
                     </div>
                     <div class="contact-item">
                         <i class="fab fa-github"></i>
                         <div class="contact-info-text">
                             <h4>GitHub</h4>
-                            <p><a href="#">github.com/simon-etc</a></p>
+                            <p><a href="https://github.com/simon-etc" target="_blank">github.com/simon-etc</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1365,7 +1446,7 @@
                         <i class="fas fa-file-pdf"></i>
                         <div class="contact-info-text">
                             <h4>CV</h4>
-                            <p><a href="documents/CV-prenom-nom.pdf" target="_blank">Telecharger mon CV</a></p>
+                            <p><a href="CV-Simon-ETCHART.pdf" download>Telecharger mon CV</a></p>
                         </div>
                     </div>
                 </div>
@@ -1374,24 +1455,21 @@
     </main>
 
     <footer>
-        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2026 Simon ETCHART - Portfolio Professionnel</p>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2025 Simon ETCHART - Portfolio Professionnel</p>
         <p style="opacity: 0.8;">Technicien Systemes et Reseaux | BTS SIO SISR - ISCB Tours | Alternance SNCF</p>
         <div style="margin-top: 1rem;">
-            <a href="#" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
-            <a href="#" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-            <a href="mailto:prenom.nom@email.com" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/simon-etc" target="_blank" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+            <a href="mailto:simonetchart37@gmail.com" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
         </div>
     </footer>
 </div>
 
-<!-- Modal pour afficher les certificats -->
 <div id="certificationModal" class="modal" onclick="closeModal()">
     <span class="close-modal">&times;</span>
     <img class="modal-content" id="modalImage">
 </div>
 
 <script>
-    // Smooth scrolling
     document.querySelectorAll('.nav-link').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -1405,7 +1483,6 @@
         });
     });
 
-    // Active navigation
     window.addEventListener('scroll', () => {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -1427,7 +1504,6 @@
         });
     });
 
-    // Modal functions for certifications
     function openModal(imagePath) {
         const modal = document.getElementById('certificationModal');
         const modalImg = document.getElementById('modalImage');
@@ -1439,7 +1515,6 @@
         document.getElementById('certificationModal').style.display = 'none';
     }
 
-    // Close modal with Escape key
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             closeModal();
