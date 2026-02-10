@@ -46,16 +46,22 @@
         }
 
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
-            background: white;
+            background: linear-gradient(135deg, #3498db, #2980b9);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-            border: 5px solid white;
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.4);
+            border: 6px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.08) rotate(3deg);
+            box-shadow: 0 25px 50px rgba(52, 152, 219, 0.5);
         }
 
         .profile-img img {
@@ -120,14 +126,34 @@
             color: white;
             text-decoration: none;
             padding: 1.2rem 1.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-bottom: 3px solid transparent;
-            font-weight: 500;
+            font-weight: 600;
+            position: relative;
+            letter-spacing: 0.5px;
         }
 
-        nav a:hover, nav a.active {
-            background: #2c3e50;
-            border-bottom-color: #3498db;
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            width: 80%;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
         }
 
         main {
@@ -282,14 +308,31 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid #ecf0f1;
+            position: relative;
+        }
+
+        .realization-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .realization-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(52, 152, 219, 0.25);
             border-color: #3498db;
+        }
+
+        .realization-card:hover::before {
+            transform: scaleX(1);
         }
 
         .realization-header {
@@ -412,12 +455,30 @@
             padding: 2rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border: 2px solid #ecf0f1;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(180deg, #3498db, #2980b9);
+            transition: height 0.3s ease;
         }
 
         .experience-card:hover {
             border-color: #3498db;
-            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.15);
+            box-shadow: 0 12px 35px rgba(52, 152, 219, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .experience-card:hover::before {
+            height: 100%;
         }
 
         .experience-header {
@@ -582,14 +643,22 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border: 2px solid #ecf0f1;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
         }
 
         .certification-card:hover {
             border-color: #27ae60;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(39, 174, 96, 0.2);
+        }
+
+        .certification-icon {
+            transition: all 0.3s ease;
+        }
+
+        .certification-card:hover .certification-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .certification-icon {
