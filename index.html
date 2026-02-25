@@ -318,11 +318,13 @@
         .carousel-track {
             display: flex;
             transition: transform 0.4s ease;
+            will-change: transform;
         }
 
         .carousel-track .realization-card {
             min-width: 100%;
-            flex-shrink: 0;
+            width: 100%;
+            flex: 0 0 100%;
         }
 
         .carousel-btn {
@@ -542,182 +544,6 @@
             color: #2d5016;
             line-height: 1.6;
         }
-
-        /* ===== TABS STYLES ===== */
-        .tabs-container {
-            margin-top: 1.5rem;
-            border: 1px solid #ecf0f1;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .tabs-nav {
-            display: flex;
-            background: #f8f9fa;
-            border-bottom: 2px solid #ecf0f1;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #7f8c8d;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -2px;
-        }
-
-        .tab-btn:hover {
-            color: #3498db;
-            background: rgba(52, 152, 219, 0.05);
-        }
-
-        .tab-btn.active {
-            color: #3498db;
-            border-bottom-color: #3498db;
-            background: white;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 1.5rem;
-            background: white;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Procedure editable area */
-        .procedure-area {
-            width: 100%;
-            min-height: 200px;
-            border: 2px dashed #d1e7f8;
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            resize: vertical;
-            outline: none;
-            transition: border-color 0.3s ease;
-            background: #fafcff;
-        }
-
-        .procedure-area:focus {
-            border-color: #3498db;
-            background: white;
-        }
-
-        .procedure-area::placeholder {
-            color: #aab4be;
-            font-style: italic;
-        }
-
-        .procedure-toolbar {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .procedure-hint {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .procedure-save-btn {
-            margin-left: auto;
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: background 0.3s ease;
-        }
-
-        .procedure-save-btn:hover {
-            background: #2980b9;
-        }
-
-        .procedure-save-btn.saved {
-            background: #27ae60;
-        }
-
-        .procedure-file-upload {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 0.8rem;
-            padding: 0.8rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #ecf0f1;
-        }
-
-        .procedure-file-upload label {
-            background: #27ae60;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            transition: background 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .procedure-file-upload label:hover {
-            background: #219a52;
-        }
-
-        .procedure-file-upload input[type="file"] {
-            display: none;
-        }
-
-        .procedure-file-name {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            flex: 1;
-        }
-
-        .pdf-download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #3498db;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s ease;
-            margin-top: 0.5rem;
-        }
-
-        .pdf-download-btn:hover {
-            background: #2980b9;
-        }
-
-        /* ===== END TABS STYLES ===== */
 
         .experience-grid {
             display: grid;
@@ -1404,85 +1230,43 @@
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
                                 </div>
                                 <div class="realization-body">
-
-                                    <!-- Onglets -->
-                                    <div class="tabs-container">
-                                        <div class="tabs-nav">
-                                            <button class="tab-btn active" onclick="switchTab(this, 'lamp-info')">
-                                                <i class="fas fa-info-circle"></i> Presentation
-                                            </button>
-                                            <button class="tab-btn" onclick="switchTab(this, 'lamp-procedure')">
-                                                <i class="fas fa-file-alt"></i> Ma Procedure
-                                            </button>
-                                        </div>
-
-                                        <!-- Onglet Presentation -->
-                                        <div id="lamp-info" class="tab-content active">
-                                            <div class="realization-section">
-                                                <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                                <p>Deploiement d'un serveur web LAMP (Linux, Apache, MySQL, PHP) dans un environnement securise pour heberger des applications web internes.</p>
-                                            </div>
-
-                                            <div class="realization-section">
-                                                <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                                <ul>
-                                                    <li>Installation et configuration de Linux (Debian/Ubuntu Server)</li>
-                                                    <li>Deploiement et securisation du serveur Apache</li>
-                                                    <li>Installation et configuration de MySQL/MariaDB</li>
-                                                    <li>Configuration de PHP et des modules necessaires</li>
-                                                    <li>Mise en place du certificat SSL/TLS (HTTPS)</li>
-                                                    <li>Configuration du pare-feu et durcissement systeme</li>
-                                                    <li>Tests de securite et validation</li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="benefit-box">
-                                                <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                                <p><strong>Hebergement interne :</strong> Serveur web operationnel pour les applications metier.<br>
-                                                <strong>Securite :</strong> Communications chiffrees et systeme durci contre les attaques.<br>
-                                                <strong>Performances :</strong> Stack optimise pour repondre aux besoins applicatifs.</p>
-                                            </div>
-
-                                            <div class="tech-stack">
-                                                <span class="tech-badge">Linux</span>
-                                                <span class="tech-badge">Apache</span>
-                                                <span class="tech-badge">MySQL</span>
-                                                <span class="tech-badge">PHP</span>
-                                                <span class="tech-badge">SSL/TLS</span>
-                                                <span class="tech-badge">UFW / iptables</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Onglet Procedure -->
-                                        <div id="lamp-procedure" class="tab-content">
-                                            <div class="procedure-toolbar">
-                                                <span class="procedure-hint">
-                                                    <i class="fas fa-pencil-alt" style="color:#3498db;"></i>
-                                                    Redigez ou collez votre procedure ci-dessous
-                                                </span>
-                                                <button class="procedure-save-btn" onclick="saveProcedure('lamp-proc-text', this)">
-                                                    <i class="fas fa-save"></i> Sauvegarder
-                                                </button>
-                                            </div>
-                                            <textarea 
-                                                id="lamp-proc-text" 
-                                                class="procedure-area" 
-                                                placeholder="Redigez ici votre procedure d'installation du serveur LAMP securise...&#10;&#10;Exemple :&#10;1. Mise a jour du systeme&#10;   sudo apt update && sudo apt upgrade -y&#10;&#10;2. Installation d'Apache&#10;   sudo apt install apache2 -y&#10;&#10;3. ..."
-                                                oninput="autoSaveProcedure('lamp-proc-text')"
-                                            ></textarea>
-                                            <div class="procedure-file-upload">
-                                                <label for="lamp-pdf-upload">
-                                                    <i class="fas fa-upload"></i> Joindre un PDF
-                                                </label>
-                                                <input type="file" id="lamp-pdf-upload" accept=".pdf" onchange="handleFileUpload(this, 'lamp-file-name', 'lamp-pdf-link')">
-                                                <span class="procedure-file-name" id="lamp-file-name">Aucun fichier selectionne</span>
-                                                <a id="lamp-pdf-link" class="pdf-download-btn" style="display:none;" download>
-                                                    <i class="fas fa-download"></i> Telecharger
-                                                </a>
-                                            </div>
-                                        </div>
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                                        <p>Deploiement d'un serveur web LAMP (Linux, Apache, MySQL, PHP) dans un environnement securise pour heberger des applications web internes.</p>
                                     </div>
-
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                                        <ul>
+                                            <li>Installation et configuration de Linux (Debian/Ubuntu Server)</li>
+                                            <li>Deploiement et securisation du serveur Apache</li>
+                                            <li>Installation et configuration de MySQL/MariaDB</li>
+                                            <li>Configuration de PHP et des modules necessaires</li>
+                                            <li>Mise en place du certificat SSL/TLS (HTTPS)</li>
+                                            <li>Configuration du pare-feu et durcissement systeme</li>
+                                            <li>Tests de securite et validation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="benefit-box">
+                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                                        <p><strong>Hebergement interne :</strong> Serveur web operationnel pour les applications metier.<br>
+                                        <strong>Securite :</strong> Communications chiffrees et systeme durci contre les attaques.<br>
+                                        <strong>Performances :</strong> Stack optimise pour repondre aux besoins applicatifs.</p>
+                                    </div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Linux</span>
+                                        <span class="tech-badge">Apache</span>
+                                        <span class="tech-badge">MySQL</span>
+                                        <span class="tech-badge">PHP</span>
+                                        <span class="tech-badge">SSL/TLS</span>
+                                        <span class="tech-badge">UFW / iptables</span>
+                                    </div>
+                                    <div class="proof-section">
+                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete disponible prochainement</p>
+                                        <a href="Procedure-LAMP.pdf" download class="pdf-download-btn">
+                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -1493,90 +1277,49 @@
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
                                 </div>
                                 <div class="realization-body">
-
-                                    <!-- Onglets -->
-                                    <div class="tabs-container">
-                                        <div class="tabs-nav">
-                                            <button class="tab-btn active" onclick="switchTab(this, 'ldap-info')">
-                                                <i class="fas fa-info-circle"></i> Presentation
-                                            </button>
-                                            <button class="tab-btn" onclick="switchTab(this, 'ldap-procedure')">
-                                                <i class="fas fa-file-alt"></i> Ma Procedure
-                                            </button>
-                                        </div>
-
-                                        <!-- Onglet Presentation -->
-                                        <div id="ldap-info" class="tab-content active">
-                                            <div class="realization-section">
-                                                <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                                <p>Mise en place d'une solution d'authentification et de gestion centralisee des utilisateurs sous Linux via un annuaire LDAP, OpenLDAP et Samba Active Directory pour unifier la gestion des identites dans un environnement heterogene.</p>
-                                            </div>
-
-                                            <div class="realization-section">
-                                                <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                                <ul>
-                                                    <li>Installation et configuration d'OpenLDAP sur serveur Linux</li>
-                                                    <li>Structure de l'annuaire (DIT) : OU, CN, groupes et utilisateurs</li>
-                                                    <li>Configuration de PAM et NSS pour l'authentification LDAP</li>
-                                                    <li>Deploiement de Samba en mode Active Directory Domain Controller</li>
-                                                    <li>Integration des clients Linux et Windows dans le domaine Samba AD</li>
-                                                    <li>Gestion des politiques de mot de passe et des ACL</li>
-                                                    <li>Tests d'authentification et de partages de fichiers cross-plateforme</li>
-                                                </ul>
-                                            </div>
-
-                                            <div class="benefit-box">
-                                                <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                                <p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs Linux et Windows.<br>
-                                                <strong>Interoperabilite :</strong> Environnement heterogene unifie grace a Samba AD.<br>
-                                                <strong>Securite :</strong> Politiques de mots de passe centralisees et gestion fine des acces.</p>
-                                            </div>
-
-                                            <div class="tech-stack">
-                                                <span class="tech-badge">LDAP</span>
-                                                <span class="tech-badge">OpenLDAP</span>
-                                                <span class="tech-badge">Samba AD</span>
-                                                <span class="tech-badge">Linux</span>
-                                                <span class="tech-badge">PAM</span>
-                                                <span class="tech-badge">NSS</span>
-                                                <span class="tech-badge">Kerberos</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Onglet Procedure -->
-                                        <div id="ldap-procedure" class="tab-content">
-                                            <div class="procedure-toolbar">
-                                                <span class="procedure-hint">
-                                                    <i class="fas fa-pencil-alt" style="color:#3498db;"></i>
-                                                    Redigez ou collez votre procedure ci-dessous
-                                                </span>
-                                                <button class="procedure-save-btn" onclick="saveProcedure('ldap-proc-text', this)">
-                                                    <i class="fas fa-save"></i> Sauvegarder
-                                                </button>
-                                            </div>
-                                            <textarea 
-                                                id="ldap-proc-text" 
-                                                class="procedure-area" 
-                                                placeholder="Redigez ici votre procedure LDAP / OpenLDAP / Samba AD...&#10;&#10;Exemple :&#10;1. Installation d'OpenLDAP&#10;   sudo apt install slapd ldap-utils -y&#10;&#10;2. Configuration initiale&#10;   sudo dpkg-reconfigure slapd&#10;&#10;3. ..."
-                                                oninput="autoSaveProcedure('ldap-proc-text')"
-                                            ></textarea>
-                                            <div class="procedure-file-upload">
-                                                <label for="ldap-pdf-upload">
-                                                    <i class="fas fa-upload"></i> Joindre un PDF
-                                                </label>
-                                                <input type="file" id="ldap-pdf-upload" accept=".pdf" onchange="handleFileUpload(this, 'ldap-file-name', 'ldap-pdf-link')">
-                                                <span class="procedure-file-name" id="ldap-file-name">Aucun fichier selectionne</span>
-                                                <a id="ldap-pdf-link" class="pdf-download-btn" style="display:none;" download>
-                                                    <i class="fas fa-download"></i> Telecharger
-                                                </a>
-                                            </div>
-                                        </div>
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                                        <p>Mise en place d'une solution d'authentification et de gestion centralisee des utilisateurs sous Linux via un annuaire LDAP, OpenLDAP et Samba Active Directory pour unifier la gestion des identites dans un environnement heterogene.</p>
                                     </div>
-
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                                        <ul>
+                                            <li>Installation et configuration d'OpenLDAP sur serveur Linux</li>
+                                            <li>Structure de l'annuaire (DIT) : OU, CN, groupes et utilisateurs</li>
+                                            <li>Configuration de PAM et NSS pour l'authentification LDAP</li>
+                                            <li>Deploiement de Samba en mode Active Directory Domain Controller</li>
+                                            <li>Integration des clients Linux et Windows dans le domaine Samba AD</li>
+                                            <li>Gestion des politiques de mot de passe et des ACL</li>
+                                            <li>Tests d'authentification et de partages de fichiers cross-plateforme</li>
+                                        </ul>
+                                    </div>
+                                    <div class="benefit-box">
+                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                                        <p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs Linux et Windows.<br>
+                                        <strong>Interoperabilite :</strong> Environnement heterogene unifie grace a Samba AD.<br>
+                                        <strong>Securite :</strong> Politiques de mots de passe centralisees et gestion fine des acces.</p>
+                                    </div>
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">LDAP</span>
+                                        <span class="tech-badge">OpenLDAP</span>
+                                        <span class="tech-badge">Samba AD</span>
+                                        <span class="tech-badge">Linux</span>
+                                        <span class="tech-badge">PAM</span>
+                                        <span class="tech-badge">NSS</span>
+                                        <span class="tech-badge">Kerberos</span>
+                                    </div>
+                                    <div class="proof-section">
+                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete disponible prochainement</p>
+                                        <a href="Procedure-LDAP.pdf" download class="pdf-download-btn">
+                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- PROJET 5 : Pare-feu -->
+
                             <div class="realization-card">
                                 <div class="realization-header">
                                     <h3><i class="fas fa-shield-alt"></i> Securisation infrastructure avec pare-feu</h3>
@@ -2094,62 +1837,6 @@
             });
         }
 
-        // Tabs
-        function switchTab(btn, tabId) {
-            // Find the parent tabs-container
-            const tabsContainer = btn.closest('.tabs-container');
-            
-            // Deactivate all tabs in this container
-            tabsContainer.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            tabsContainer.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            // Activate selected
-            btn.classList.add('active');
-            tabsContainer.querySelector('#' + tabId).classList.add('active');
-        }
-
-        // Save procedure to localStorage
-        function saveProcedure(textareaId, btn) {
-            const text = document.getElementById(textareaId).value;
-            localStorage.setItem(textareaId, text);
-            btn.innerHTML = '<i class="fas fa-check"></i> Sauvegarde !';
-            btn.classList.add('saved');
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-save"></i> Sauvegarder';
-                btn.classList.remove('saved');
-            }, 2000);
-        }
-
-        // Auto-save on input (debounced)
-        let autoSaveTimers = {};
-        function autoSaveProcedure(textareaId) {
-            clearTimeout(autoSaveTimers[textareaId]);
-            autoSaveTimers[textareaId] = setTimeout(() => {
-                const text = document.getElementById(textareaId).value;
-                localStorage.setItem(textareaId, text);
-            }, 1000);
-        }
-
-        // Load saved procedures on page load
-        window.addEventListener('load', () => {
-            ['lamp-proc-text', 'ldap-proc-text'].forEach(id => {
-                const saved = localStorage.getItem(id);
-                const el = document.getElementById(id);
-                if (saved && el) el.value = saved;
-            });
-        });
-
-        // Handle PDF file upload
-        function handleFileUpload(input, fileNameId, linkId) {
-            const file = input.files[0];
-            if (!file) return;
-            document.getElementById(fileNameId).textContent = file.name;
-            const url = URL.createObjectURL(file);
-            const link = document.getElementById(linkId);
-            link.href = url;
-            link.download = file.name;
-            link.style.display = 'inline-flex';
-        }
     </script>
 </body>
 </html>
