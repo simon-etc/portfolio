@@ -1452,24 +1452,7 @@
                                                 <span class="tech-badge">UFW / iptables</span>
                                             </div>
                                         </div>
-
-                                        <!-- Onglet Procedure -->
-                                        <div id="lamp-procedure" class="tab-content">
-                                            <div class="procedure-toolbar">
-                                                <span class="procedure-hint">
-                                                    <i class="fas fa-pencil-alt" style="color:#3498db;"></i>
-                                                    Redigez ou collez votre procedure ci-dessous
-                                                </span>
-                                                <button class="procedure-save-btn" onclick="saveProcedure('lamp-proc-text', this)">
-                                                    <i class="fas fa-save"></i> Sauvegarder
-                                                </button>
-                                            </div>
-                                            <textarea 
-                                                id="lamp-proc-text" 
-                                                class="procedure-area" 
-                                                placeholder="Redigez ici votre procedure d'installation du serveur LAMP securise...&#10;&#10;Exemple :&#10;1. Mise a jour du systeme&#10;   sudo apt update && sudo apt upgrade -y&#10;&#10;2. Installation d'Apache&#10;   sudo apt install apache2 -y&#10;&#10;3. ..."
-                                                oninput="autoSaveProcedure('lamp-proc-text')"
-                                            ></textarea>
+                                        
                                             <div class="procedure-file-upload">
                                                 <label for="lamp-pdf-upload">
                                                     <i class="fas fa-upload"></i> Joindre un PDF
@@ -2153,3 +2136,4 @@
     </script>
 </body>
 </html>
+
