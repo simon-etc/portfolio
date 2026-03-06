@@ -406,84 +406,58 @@
             }
         }
 
+        /* === REALISATIONS === */
         .realization-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid #ecf0f1;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            border: 1px solid #ecf0f1;
             position: relative;
         }
 
-        .realization-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #3498db, #2980b9);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .realization-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(52, 152, 219, 0.25);
-            border-color: #3498db;
-        }
-
-        .realization-card:hover::before {
-            transform: scaleX(1);
-        }
-
         .realization-header {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 1.5rem;
+            padding: 1.4rem 1.6rem;
         }
 
         .realization-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
         .realization-context {
-            font-size: 0.95rem;
-            opacity: 0.95;
+            font-size: 0.85rem;
+            opacity: 0.8;
         }
 
-        .realization-body {
-            padding: 2rem;
-        }
+        .realization-body { padding: 1.4rem 1.6rem; }
 
-        .realization-section {
-            margin-bottom: 1.5rem;
-        }
+        .realization-section { margin-bottom: 1.2rem; }
 
         .realization-section h4 {
             color: #3498db;
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
 
-        .realization-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
+        .realization-section ul { list-style: none; padding-left: 0; }
 
         .realization-section li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+            padding: 0.35rem 0 0.35rem 1.2rem;
             position: relative;
             color: #555;
+            font-size: 0.92rem;
         }
 
         .realization-section li:before {
@@ -491,59 +465,56 @@
             position: absolute;
             left: 0;
             color: #3498db;
-            font-weight: bold;
         }
 
         .proof-section {
             background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
             margin-top: 1rem;
             border: 1px solid #ecf0f1;
         }
 
         .proof-section h4 {
             color: #27ae60;
-            margin-bottom: 1rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
         }
 
         .tech-stack {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
         }
 
         .tech-badge {
-            background: #e8f4fd;
+            background: #eaf4fd;
             color: #2980b9;
-            padding: 0.4rem 1rem;
+            padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            border: 1px solid #d1e7f8;
         }
 
         .benefit-box {
-            background: #e8f5e9;
-            border-left: 4px solid #27ae60;
-            padding: 1.2rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+            background: #f0faf2;
+            border-left: 3px solid #27ae60;
+            padding: 0.9rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.8rem;
         }
 
         .benefit-box h4 {
             color: #27ae60;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.88rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
-        .benefit-box p {
-            color: #2d5016;
-            line-height: 1.6;
-        }
+        .benefit-box p { color: #2d5016; line-height: 1.5; font-size: 0.9rem; }
 
         /* === TIMELINE PARCOURS === */
         .timeline {
@@ -659,12 +630,6 @@
             color: #555;
             font-size: 1.05rem;
             margin-bottom: 2rem;
-        }
-
-        .contact-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.2rem;
         }
 
         .contact-tile {
@@ -836,52 +801,57 @@
             color: #555;
         }
 
+        /* === COMPETENCES === */
         .competences-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
         .competence-card {
             background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-top: 4px solid #3498db;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+            border: 1px solid #ecf0f1;
+            border-top: 3px solid #3498db;
+            transition: all 0.25s ease;
+        }
+
+        .competence-card:hover {
+            box-shadow: 0 6px 25px rgba(52,152,219,0.15);
+            transform: translateY(-3px);
         }
 
         .competence-card h3 {
             color: #2c3e50;
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
 
-        .competence-card h3 i {
-            color: #3498db;
-            font-size: 1.6rem;
-        }
+        .competence-card h3 i { color: #3498db; }
 
         .competence-list {
             list-style: none;
             padding-left: 0;
+            margin: 0;
         }
 
         .competence-list li {
-            padding: 0.8rem 0;
-            padding-left: 2rem;
+            padding: 0.55rem 0 0.55rem 1.4rem;
             position: relative;
-            color: #2c3e50;
-            border-bottom: 1px solid #ecf0f1;
-            font-weight: 500;
+            color: #444;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.92rem;
+            line-height: 1.4;
         }
 
-        .competence-list li:last-child {
-            border-bottom: none;
-        }
+        .competence-list li:last-child { border-bottom: none; }
 
         .competence-list li:before {
             content: "✓";
@@ -889,14 +859,14 @@
             left: 0;
             color: #27ae60;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
         }
 
         .competence-details {
-            font-size: 0.9rem;
-            color: #7f8c8d;
+            font-size: 0.8rem;
+            color: #95a5a6;
             font-weight: normal;
-            margin-top: 0.3rem;
+            margin-top: 0.15rem;
             display: block;
         }
 
@@ -1053,60 +1023,6 @@
         .btn-download i {
             font-size: 1.2rem;
         }
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 20px;
-            margin-top: 2rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-item i {
-            font-size: 1.8rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-        }
-
-        .contact-info-text h4 {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 0.2rem;
-        }
-
-        .contact-info-text p {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .contact-info-text a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .contact-info-text a:hover {
-            text-decoration: underline;
-        }
 
         footer {
             background: #2c3e50;
@@ -1188,9 +1104,6 @@
             }
             .experience-title {
                 text-align: center;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
             }
             .tabs-nav {
                 flex-direction: column;
@@ -1925,11 +1838,11 @@
                 <div class="contact-clean">
                     <p class="contact-intro">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p>
                     <div class="contact-items">
-                        <a href="mailto:simon.etchart@gmail.com" class="contact-tile">
+                        <a href="/cdn-cgi/l/email-protection#7102181c1e1f5f1405121910030531161c10181d5f121e1c" class="contact-tile">
                             <div class="contact-tile-icon"><i class="fas fa-envelope"></i></div>
                             <div class="contact-tile-text">
                                 <span>Email</span>
-                                <strong>simon.etchart@gmail.com</strong>
+                                <strong><span class="__cf_email__" data-cfemail="36455f5b5958185342555e57444276515b575f5a1855595b">[email&#160;protected]</span></strong>
                             </div>
                         </a>
                         <a href="https://github.com/simon-etc" target="_blank" class="contact-tile">
@@ -1946,20 +1859,13 @@
                                 <strong>Tours, France</strong>
                             </div>
                         </div>
-                        <a href="CV-Simon-ETCHART.pdf" download class="contact-tile">
-                            <div class="contact-tile-icon"><i class="fas fa-file-pdf"></i></div>
-                            <div class="contact-tile-text">
-                                <span>Curriculum Vitae</span>
-                                <strong>Télécharger mon CV</strong>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2025 Simon ETCHART - Portfolio Professionnel</p>
+            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2026 Simon ETCHART - Portfolio Professionnel</p>
             <p style="opacity: 0.8;">Technicien Systemes et Reseaux | BTS SIO SISR - ISCB Tours | Alternance SNCF</p>
             <div style="margin-top: 1rem;">
                 <a href="https://github.com/simon-etc" target="_blank" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
@@ -1973,7 +1879,7 @@
         <img class="modal-content" id="modalImage">
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navigation smooth scroll
         document.querySelectorAll('.nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2033,12 +1939,36 @@
             indicatorsContainer.appendChild(indicator);
         }
 
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
         function moveCarousel(direction) {
             currentSlide += direction;
             if (currentSlide < 0) currentSlide = totalSlides - 1;
             else if (currentSlide >= totalSlides) currentSlide = 0;
             updateCarousel();
         }
-
         function goToSlide(index) {
- 
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            track.style.transform = `translateX(${-currentSlide * 100}%)`;
+            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+    </script>
+</body>
+</html>
