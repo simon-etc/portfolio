@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETCHART Simon - Technicien Systemes et Reseaux</title>
+    <title>Simon ETCHART – Paramètreur Télésurveillance SNCF</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: #eef2f7;
+            background: #f4f6f9;
         }
 
         .container {
@@ -27,7 +27,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #1a1f35 0%, #2d3561 50%, #1a1f35 100%);
+            background: linear-gradient(135deg, #2e4057 0%, #3d5a80 60%, #2e4057 100%);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -41,7 +41,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(ellipse at 60% 40%, rgba(52,152,219,0.15) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 60% 40%, rgba(74, 144, 217,0.15) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -59,11 +59,11 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #4a90d9, #3a7abf);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 20px 40px rgba(74, 144, 217, 0.4);
             border: 6px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
             transition: all 0.3s ease;
@@ -71,7 +71,7 @@
 
         .profile-img:hover {
             transform: scale(1.08) rotate(3deg);
-            box-shadow: 0 25px 50px rgba(52, 152, 219, 0.5);
+            box-shadow: 0 25px 50px rgba(74, 144, 217, 0.5);
         }
 
         .profile-img img {
@@ -82,7 +82,7 @@
 
         .profile-img i {
             font-size: 4rem;
-            color: #3498db;
+            color: #4a90d9;
         }
 
         .profile-info {
@@ -115,7 +115,7 @@
         }
 
         nav {
-            background: #1a1f35;
+            background: #2e4057;
             padding: 0;
             position: sticky;
             top: 0;
@@ -150,7 +150,7 @@
             left: 50%;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, #3498db, #2980b9);
+            background: linear-gradient(90deg, #4a90d9, #3a7abf);
             transform: translateX(-50%);
             transition: width 0.3s ease;
         }
@@ -162,7 +162,7 @@
 
         nav a:hover,
         nav a.active {
-            background: rgba(52, 152, 219, 0.15);
+            background: rgba(74, 144, 217, 0.15);
             color: #5dade2;
         }
 
@@ -172,6 +172,14 @@
             margin: 0 auto;
         }
 
+
+        section:nth-child(even) {
+            background: #f8fafc;
+            margin-left: -3rem;
+            margin-right: -3rem;
+            padding-left: 3rem;
+            padding-right: 3rem;
+        }
         section {
             margin-bottom: 4rem;
             opacity: 0;
@@ -193,27 +201,27 @@
         }
 
         h2 {
-            color: #1a1f35;
+            color: #2e4057;
             font-size: 2rem;
             margin-bottom: 2rem;
             padding-bottom: 0.8rem;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #4a90d9;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
         h2 i {
-            color: #3498db;
+            color: #4a90d9;
         }
 
         .company-card {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: linear-gradient(135deg, #4a90d9 0%, #3a7abf 100%);
             color: white;
             padding: 2.5rem;
             border-radius: 15px;
             margin-bottom: 3rem;
-            box-shadow: 0 10px 40px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 10px 40px rgba(74, 144, 217, 0.3);
         }
 
         .company-header {
@@ -245,7 +253,7 @@
 
         .company-logo i {
             font-size: 3.5rem;
-            color: #3498db;
+            color: #4a90d9;
         }
 
         .company-info h3 {
@@ -312,22 +320,31 @@
             gap: 2.5rem;
             margin-top: 2rem;
         }
-        /* CAROUSEL STYLES */
+        /* CAROUSEL */
         .carousel-container {
             position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 60px;
+            max-width: 860px;
+            margin: 2rem auto 0;
+            padding: 0;
+        }
+
+        .carousel-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
         }
 
         .carousel-wrapper {
             overflow: hidden;
             width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(46,64,87,0.12);
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.4s ease;
+            transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
             will-change: transform;
         }
 
@@ -338,88 +355,70 @@
         }
 
         .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #3498db;
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
+            flex-shrink: 0;
+            background: white;
+            color: #4a90d9;
+            border: 2px solid #d8e6f5;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(74,144,217,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel-btn:hover {
-            background: #2980b9;
-            transform: translateY(-50%) scale(1.1);
+            background: #4a90d9;
+            color: white;
+            border-color: #4a90d9;
+            box-shadow: 0 4px 14px rgba(74,144,217,0.35);
+            transform: scale(1.08);
         }
 
-        .carousel-btn.prev {
-            left: 0;
-        }
+        .carousel-btn i { font-size: 1rem; }
 
-        .carousel-btn.next {
-            right: 0;
-        }
-
-        .carousel-btn i {
-            font-size: 1.2rem;
+        .carousel-counter {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #95a5a6;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .carousel-indicators {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 2rem;
+            gap: 8px;
+            margin-top: 0.7rem;
         }
 
         .carousel-indicator {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: #bdc3c7;
+            background: #d0d8e4;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .carousel-indicator.active {
-            background: #3498db;
-            width: 30px;
-            border-radius: 6px;
+            background: #4a90d9;
+            width: 24px;
+            border-radius: 4px;
         }
 
-        /* Responsive carousel */
         @media (max-width: 768px) {
-            .carousel-container {
-                padding: 0 40px;
-            }
-            .carousel-btn {
-                width: 40px;
-                height: 40px;
-            }
-            .carousel-btn i {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .carousel-container {
-                padding: 0 30px;
-            }
-            .carousel-btn {
-                width: 35px;
-                height: 35px;
-            }
+            .carousel-btn { width: 38px; height: 38px; }
         }
 
         /* === REALISATIONS === */
         .benefit-box {
-            background: linear-gradient(135deg, #eafaf1, #d5f5e3);
-            border-left: 4px solid #27ae60;
+            background: linear-gradient(135deg, #f0faf4, #dff5e8);
+            border-left: 4px solid #48c774;
             padding: 1rem 1.2rem;
             border-radius: 8px;
             margin-top: 1rem;
@@ -446,7 +445,7 @@
         }
 
         .realization-header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: linear-gradient(135deg, #2e4057 0%, #3d5a80 100%);
             color: white;
             padding: 1.4rem 1.6rem;
         }
@@ -469,7 +468,7 @@
         .realization-section { margin-bottom: 1.2rem; }
 
         .realization-section h4 {
-            color: #3498db;
+            color: #4a90d9;
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 0.6rem;
@@ -493,9 +492,30 @@
             content: "▸";
             position: absolute;
             left: 0;
-            color: #3498db;
+            color: #4a90d9;
         }
 
+
+        .pdf-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #4a90d9, #3a7abf);
+            color: white;
+            padding: 0.6rem 1.3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 10px rgba(74,144,217,0.25);
+            margin-top: 0.3rem;
+        }
+        .pdf-download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(74,144,217,0.35);
+        }
+        .pdf-download-btn i { font-size: 0.9rem; }
         .proof-section {
             background: #f8f9fa;
             padding: 1rem 1.2rem;
@@ -519,7 +539,7 @@
 
         .tech-badge {
             background: #eaf4fd;
-            color: #2980b9;
+            color: #3a7abf;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -540,7 +560,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(180deg, #3498db, #2980b9);
+            background: linear-gradient(180deg, #4a90d9, #3a7abf);
             border-radius: 3px;
         }
 
@@ -558,9 +578,9 @@
             width: 13px;
             height: 13px;
             border-radius: 50%;
-            background: #3498db;
+            background: #4a90d9;
             border: 3px solid white;
-            box-shadow: 0 0 0 2px #3498db;
+            box-shadow: 0 0 0 2px #4a90d9;
         }
 
         .timeline-card {
@@ -573,8 +593,8 @@
         }
 
         .timeline-card:hover {
-            border-color: #3498db;
-            box-shadow: 0 6px 25px rgba(52,152,219,0.15);
+            border-color: #4a90d9;
+            box-shadow: 0 6px 25px rgba(74, 144, 217,0.15);
             transform: translateX(4px);
         }
 
@@ -599,16 +619,16 @@
         }
 
         .timeline-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .timeline-logo i { color: #3498db; font-size: 1.2rem; }
+        .timeline-logo i { color: #4a90d9; font-size: 1.2rem; }
 
         .timeline-meta h3 {
-            color: #2c3e50;
+            color: #2e4057;
             font-size: 1.05rem;
             font-weight: 700;
             margin-bottom: 0.2rem;
         }
 
-        .timeline-meta .tl-date { color: #3498db; font-size: 0.85rem; font-weight: 600; }
+        .timeline-meta .tl-date { color: #4a90d9; font-size: 0.85rem; font-weight: 600; }
         .timeline-meta .tl-location { color: #95a5a6; font-size: 0.82rem; }
 
         .timeline-tags {
@@ -620,7 +640,7 @@
 
         .tl-tag {
             background: #eaf4fd;
-            color: #2980b9;
+            color: #3a7abf;
             padding: 0.25rem 0.7rem;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -656,7 +676,7 @@
         }
 
         .contact-tile:hover {
-            border-color: #3498db;
+            border-color: #4a90d9;
             background: #eaf4fd;
             transform: translateY(-2px);
         }
@@ -664,7 +684,7 @@
         .contact-tile-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #4a90d9, #3a7abf);
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -685,7 +705,7 @@
 
         .contact-tile-text strong {
             font-size: 0.95rem;
-            color: #2c3e50;
+            color: #2e4057;
         }
 
         .experience-grid {
@@ -713,13 +733,13 @@
             left: 0;
             width: 5px;
             height: 0;
-            background: linear-gradient(180deg, #3498db, #2980b9);
+            background: linear-gradient(180deg, #4a90d9, #3a7abf);
             transition: height 0.3s ease;
         }
 
         .experience-card:hover {
-            border-color: #3498db;
-            box-shadow: 0 12px 35px rgba(52, 152, 219, 0.2);
+            border-color: #4a90d9;
+            box-shadow: 0 12px 35px rgba(74, 144, 217, 0.2);
             transform: translateY(-5px);
         }
 
@@ -755,7 +775,7 @@
         }
 
         .experience-logo i {
-            color: #3498db;
+            color: #4a90d9;
             font-size: 2rem;
         }
 
@@ -764,13 +784,13 @@
         }
 
         .experience-title h3 {
-            color: #2c3e50;
+            color: #2e4057;
             font-size: 1.4rem;
             margin-bottom: 0.3rem;
         }
 
         .experience-title .date {
-            color: #3498db;
+            color: #4a90d9;
             font-weight: 600;
             font-size: 0.95rem;
         }
@@ -781,7 +801,7 @@
         }
 
         .experience-content h4 {
-            color: #3498db;
+            color: #4a90d9;
             margin: 1rem 0 0.5rem 0;
             font-size: 1.05rem;
         }
@@ -825,17 +845,17 @@
             padding: 1.5rem;
             box-shadow: 0 3px 15px rgba(0,0,0,0.07);
             border: 1px solid #ecf0f1;
-            border-top: 3px solid #3498db;
+            border-top: 3px solid #4a90d9;
             transition: all 0.25s ease;
         }
 
         .competence-card:hover {
-            box-shadow: 0 6px 25px rgba(52,152,219,0.15);
+            box-shadow: 0 6px 25px rgba(74, 144, 217,0.15);
             transform: translateY(-3px);
         }
 
         .competence-card h3 {
-            color: #2c3e50;
+            color: #2e4057;
             font-size: 1rem;
             font-weight: 700;
             margin-bottom: 1rem;
@@ -844,7 +864,7 @@
             gap: 0.6rem;
         }
 
-        .competence-card h3 i { color: #3498db; }
+        .competence-card h3 i { color: #4a90d9; }
 
         .competence-list {
             list-style: none;
@@ -919,7 +939,7 @@
         }
 
         .certification-card h3 {
-            color: #2c3e50;
+            color: #2e4057;
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
         }
@@ -929,14 +949,14 @@
         }
 
         .certification-date {
-            color: #3498db;
+            color: #4a90d9;
             font-size: 0.9rem;
             font-weight: 600;
         }
 
         .certification-badge {
             display: inline-block;
-            background: #27ae60;
+            background: #2ecc71;
             color: white;
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
@@ -990,7 +1010,7 @@
             border-radius: 15px;
             padding: 2.5rem;
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid #3498db;
+            border-left: 5px solid #4a90d9;
             margin-top: 2rem;
         }
 
@@ -1011,7 +1031,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.7rem;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #4a90d9, #3a7abf);
             color: white;
             padding: 0.9rem 1.8rem;
             border-radius: 10px;
@@ -1019,7 +1039,7 @@
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52,152,219,0.3);
+            box-shadow: 0 4px 15px rgba(74, 144, 217,0.3);
             flex: 1;
             justify-content: center;
             min-width: 220px;
@@ -1027,7 +1047,7 @@
 
         .btn-download:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(52,152,219,0.45);
+            box-shadow: 0 8px 25px rgba(74, 144, 217,0.45);
         }
 
         .btn-download i {
@@ -1035,7 +1055,7 @@
         }
 
         footer {
-            background: #1a1f35;
+            background: #2e4057;
             color: white;
             text-align: center;
             padding: 2rem;
@@ -1048,7 +1068,7 @@
         }
 
         footer a:hover {
-            color: #3498db;
+            color: #4a90d9;
         }
 
         @media (max-width: 1024px) {
@@ -1163,7 +1183,7 @@
                     <div class="header-contact">
                         <div class="header-contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>simonetchart37@gmail.com</span>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d1a2b8bcbebfb4a5b2b9b0a3a5e2e691b6bcb0b8bdffb2bebc">[email&#160;protected]</a></span>
                         </div>
                         <div class="header-contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1178,9 +1198,9 @@
             <div class="nav-container">
                 <a href="#presentation" class="nav-link">Présentation</a>
                 <a href="#entreprise" class="nav-link">Entreprise</a>
-                <a href="#realisations" class="nav-link">Realisations</a>
+                <a href="#realisations" class="nav-link">Réalisations</a>
                 <a href="#parcours" class="nav-link">Parcours</a>
-                <a href="#competences" class="nav-link">Competences</a>
+                <a href="#competences" class="nav-link">Compétences</a>
                 <a href="#certifications" class="nav-link">Certifications</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
@@ -1219,38 +1239,31 @@
                             <i class="fas fa-train" style="display: none;"></i>
                         </div>
                         <div class="company-info">
-                            <h3>SNCF - Societe Nationale des Chemins de fer Francais</h3>
+                            <h3>SNCF – Société Nationale des Chemins de fer Français</h3>
                             <p><i class="fas fa-map-marker-alt"></i> France | <i class="fas fa-users"></i> +150 000 collaborateurs | <i class="fas fa-industry"></i> Transport ferroviaire</p>
                         </div>
                     </div>
                     
                     <div class="company-description">
-                        <h4>Presentation de l'entreprise</h4>
+                        <h4>Présentation de l'entreprise</h4>
                         <p>
-                            La SNCF est l'entreprise ferroviaire publique francaise, leader europeen du transport de voyageurs et de marchandises. Premier reseau ferroviaire d'Europe avec plus de 30 000 km de lignes, la SNCF assure quotidiennement le transport de millions de voyageurs a travers ses services TGV, Intercites, TER et Transilien.
-                        </p>
-                        <p style="margin-top: 1rem;">
-                            Au-dela du transport, la SNCF gere l'ensemble des infrastructures ferroviaires nationales et developpe des solutions de mobilite innovantes. L'entreprise s'appuie sur un systeme d'information complexe et une infrastructure technique de pointe necessitant une gestion rigoureuse des systemes et reseaux.
+                            La SNCF est l'entreprise ferroviaire publique française, premier réseau ferroviaire d'Europe avec plus de 30 000 km de lignes. Elle assure quotidiennement le transport de millions de voyageurs via ses services TGV, Intercités, TER et Transilien, tout en gérant l'ensemble des infrastructures ferroviaires nationales.
                         </p>
                     </div>
 
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem;">Missions principales de la SNCF</h4>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 0.9;">Activités principales</h4>
                     <div class="company-missions">
                         <div class="mission-item">
                             <h4><i class="fas fa-train"></i> Transport de voyageurs</h4>
-                            <p>15 millions de voyageurs transportes quotidiennement (TGV, Intercites, TER, Transilien)</p>
+                            <p>15 millions de voyageurs/jour — TGV, Intercités, TER, Transilien</p>
                         </div>
                         <div class="mission-item">
-                            <h4><i class="fas fa-box"></i> Fret ferroviaire</h4>
-                            <p>Transport de marchandises sur le territoire national et europeen</p>
+                            <h4><i class="fas fa-wrench"></i> Gestion de l'infrastructure</h4>
+                            <p>Entretien et modernisation de 30 000 km de voies ferrées</p>
                         </div>
                         <div class="mission-item">
-                            <h4><i class="fas fa-wrench"></i> Maintenance infrastructure</h4>
-                            <p>Entretien et modernisation de 30 000 km de voies ferrees et equipements</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-lightbulb"></i> Innovation mobilite</h4>
-                            <p>Developpement de solutions digitales et de mobilite durable</p>
+                            <h4><i class="fas fa-lightbulb"></i> Innovation & numérique</h4>
+                            <p>Développement de solutions digitales et de mobilité durable</p>
                         </div>
                     </div>
 
@@ -1277,9 +1290,10 @@
             </section>
 
             <section id="realisations">
-                <h2><i class="fas fa-project-diagram"></i> Mes Realisations et Projets</h2>
+                <h2><i class="fas fa-project-diagram"></i> Mes Réalisations et Projets</h2>
                 
                 <div class="carousel-container">
+                    <div class="carousel-nav">
                     <button class="carousel-btn prev" onclick="moveCarousel(-1)">
                         <i class="fas fa-chevron-left"></i>
                     </button>
@@ -1287,13 +1301,30 @@
                     <div class="carousel-wrapper">
                         <div class="carousel-track" id="carouselTrack">
 
-                            <!-- PROJET 1 : Active Directory -->
                             <div class="realization-card">
                                 <div class="realization-header">
                                     <h3><i class="fas fa-server"></i> Mise en place Active Directory avec controle d'acces</h3>
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Decembre 2024</p>
                                 </div>
                                 <div class="realization-body">
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
+                                        <p>Mise en place d'un environnement Active Directory pour gerer les utilisateurs et appliquer des politiques de securite differenciees selon les profils.</p>
+                                    </div>
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                                        <ul>
+                                            <li>Installation et configuration d'un serveur Windows Server 2022</li>
+                                            <li>Deploiement du role Active Directory Domain Services (AD DS)</li>
+                                            <li>Creation de deux comptes utilisateurs avec niveaux d'acces differents</li>
+                                            <li>Configuration d'un groupe de securite pour faciliter la gestion des droits</li>
+                                            <li>Mise en place de GPO (Group Policy Objects) pour appliquer des politiques de securite</li>
+                                            <li>Tests de connexion et verification des restrictions d'acces</li>
+                                        </ul>
+                                    </div>
+
                                     <div class="benefit-box">
                                         <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
                                         <p><strong>Centralisation de la gestion :</strong> Controle unifie des utilisateurs et groupes depuis une console unique.<br>
@@ -1310,39 +1341,41 @@
 
                                     <div class="proof-section">
                                         <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete detaillee disponible en telechargement</p>
+                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète détaillée disponible en téléchargement</p>
                                         <a href="Procedure-Active-Directory.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
+                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
                                         </a>
                                     </div>
+
                                 </div>
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                        <p>Mise en place d'un environnement Active Directory pour gerer les utilisateurs et appliquer des politiques de securite differenciees selon les profils.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration d'un serveur Windows Server 2022</li>
-                                            <li>Deploiement du role Active Directory Domain Services (AD DS)</li>
-                                            <li>Creation de deux comptes utilisateurs avec niveaux d'acces differents</li>
-                                            <li>Configuration d'un groupe de securite pour faciliter la gestion des droits</li>
-                                            <li>Mise en place de GPO (Group Policy Objects) pour appliquer des politiques de securite</li>
-                                            <li>Tests de connexion et verification des restrictions d'acces</li>
-                                        </ul>
-                                    </div>
-
-                                    
                             </div>
 
-                            <!-- PROJET 2 : Création du Portfolio -->
                             <div class="realization-card">
                                 <div class="realization-header">
                                     <h3><i class="fas fa-globe"></i> Creation d'un portfolio professionnel avec GitHub Pages</h3>
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Janvier 2025</p>
                                 </div>
                                 <div class="realization-body">
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
+                                        <p>Necessite de creer une vitrine professionnelle en ligne pour presenter mon parcours, mes competences et mes realisations dans le cadre du BTS SIO SISR.</p>
+                                    </div>
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                                        <ul>
+                                            <li>Conception et developpement d'un site web responsive en HTML5/CSS3</li>
+                                            <li>Creation d'un repository GitHub pour le versioning du code</li>
+                                            <li>Configuration de GitHub Pages pour l'hebergement gratuit</li>
+                                            <li>Implementation d'un design professionnel avec animations CSS</li>
+                                            <li>Intégration de sections : entreprise, réalisations, compétences, parcours</li>
+                                            <li>Ajout de fonctionnalites interactives (navigation smooth scroll, modal)</li>
+                                            <li>Optimisation responsive pour mobile, tablette et desktop</li>
+                                            <li>Réalisé avec l'assistance de Claude (Anthropic) pour la structure et le design</li>
+                                        </ul>
+                                    </div>
+
                                     <div class="benefit-box">
                                         <h4><i class="fas fa-check-circle"></i> Apports pour le developpement professionnel</h4>
                                         <p><strong>Visibilite en ligne :</strong> Presence professionnelle accessible 24/7 pour les recruteurs.<br>
@@ -1360,66 +1393,27 @@
 
                                     <div class="proof-section">
                                         <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete de creation et deploiement disponible</p>
+                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète de création et déploiement disponible</p>
                                         <a href="Procedure-Creation-Portfolio.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
+                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
                                         </a>
                                     </div>
+
                                 </div>
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                        <p>Necessite de creer une vitrine professionnelle en ligne pour presenter mon parcours, mes competences et mes realisations dans le cadre du BTS SIO SISR.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Conception et developpement d'un site web responsive en HTML5/CSS3</li>
-                                            <li>Creation d'un repository GitHub pour le versioning du code</li>
-                                            <li>Configuration de GitHub Pages pour l'hebergement gratuit</li>
-                                            <li>Implementation d'un design professionnel avec animations CSS</li>
-                                            <li>Integration de sections : entreprise, realisations, competences, parcours</li>
-                                            <li>Ajout de fonctionnalites interactives (navigation smooth scroll, modal)</li>
-                                            <li>Optimisation responsive pour mobile, tablette et desktop</li>
-                                        </ul>
-                                    </div>
-
-                                    
                             </div>
 
-                            <!-- PROJET 3 : Installation serveur LAMP sécurisé -->
                             <div class="realization-card">
                                 <div class="realization-header">
                                     <h3><i class="fas fa-layer-group"></i> Installation d'un serveur LAMP securise</h3>
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
                                 </div>
                                 <div class="realization-body">
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Hebergement interne :</strong> Serveur web operationnel pour les applications metier.<br>
-                                        <strong>Securite :</strong> Communications chiffrees et systeme durci contre les attaques.<br>
-                                        <strong>Performances :</strong> Stack optimise pour repondre aux besoins applicatifs.</p>
-                                    </div>
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">Linux</span>
-                                        <span class="tech-badge">Apache</span>
-                                        <span class="tech-badge">MySQL</span>
-                                        <span class="tech-badge">PHP</span>
-                                        <span class="tech-badge">SSL/TLS</span>
-                                        <span class="tech-badge">UFW / iptables</span>
-                                    </div>
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete disponible prochainement</p>
-                                        <a href="Procedure-LAMP.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
-                                        </a>
-                                    </div>
-                                </div>
+
                                     <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
                                         <p>Deploiement d'un serveur web LAMP (Linux, Apache, MySQL, PHP) dans un environnement securise pour heberger des applications web internes.</p>
                                     </div>
+
                                     <div class="realization-section">
                                         <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
                                         <ul>
@@ -1432,43 +1426,46 @@
                                             <li>Tests de securite et validation</li>
                                         </ul>
                                     </div>
-                                    
+
+                                    <div class="benefit-box">
+                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                                        <p><strong>Hebergement interne :</strong> Serveur web operationnel pour les applications metier.<br>
+                                        <strong>Securite :</strong> Communications chiffrees et systeme durci contre les attaques.<br>
+                                        <strong>Performances :</strong> Stack optimise pour repondre aux besoins applicatifs.</p>
+                                    </div>
+
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">Linux</span>
+                                        <span class="tech-badge">Apache</span>
+                                        <span class="tech-badge">MySQL</span>
+                                        <span class="tech-badge">PHP</span>
+                                        <span class="tech-badge">SSL/TLS</span>
+                                        <span class="tech-badge">UFW / iptables</span>
+                                    </div>
+
+                                    <div class="proof-section">
+                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
+                                        <a href="Procedure-LAMP.pdf" download class="pdf-download-btn">
+                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
+                                        </a>
+                                    </div>
+
+                                </div>
                             </div>
 
-                            <!-- PROJET 4 : LDAP / OpenLDAP / Samba AD -->
                             <div class="realization-card">
                                 <div class="realization-header">
                                     <h3><i class="fas fa-address-book"></i> Authentification/gestion centralisee et service d'annuaire sous LINUX : LDAP, OpenLDAP et Samba AD</h3>
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
                                 </div>
                                 <div class="realization-body">
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs Linux et Windows.<br>
-                                        <strong>Interoperabilite :</strong> Environnement heterogene unifie grace a Samba AD.<br>
-                                        <strong>Securite :</strong> Politiques de mots de passe centralisees et gestion fine des acces.</p>
-                                    </div>
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">LDAP</span>
-                                        <span class="tech-badge">OpenLDAP</span>
-                                        <span class="tech-badge">Samba AD</span>
-                                        <span class="tech-badge">Linux</span>
-                                        <span class="tech-badge">PAM</span>
-                                        <span class="tech-badge">NSS</span>
-                                        <span class="tech-badge">Kerberos</span>
-                                    </div>
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #555; margin-bottom: 1rem;">Procedure complete disponible prochainement</p>
-                                        <a href="Procedure-LDAP.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Telecharger la procedure (PDF)
-                                        </a>
-                                    </div>
-                                </div>
+
                                     <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
+                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
                                         <p>Mise en place d'une solution d'authentification et de gestion centralisee des utilisateurs sous Linux via un annuaire LDAP, OpenLDAP et Samba Active Directory pour unifier la gestion des identites dans un environnement heterogene.</p>
                                     </div>
+
                                     <div class="realization-section">
                                         <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
                                         <ul>
@@ -1481,10 +1478,34 @@
                                             <li>Tests d'authentification et de partages de fichiers cross-plateforme</li>
                                         </ul>
                                     </div>
-                                    
-                            </div>
 
-                            <!-- PROJET 5 : Pare-feu -->
+                                    <div class="benefit-box">
+                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
+                                        <p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs Linux et Windows.<br>
+                                        <strong>Interoperabilite :</strong> Environnement heterogene unifie grace a Samba AD.<br>
+                                        <strong>Securite :</strong> Politiques de mots de passe centralisees et gestion fine des acces.</p>
+                                    </div>
+
+                                    <div class="tech-stack">
+                                        <span class="tech-badge">LDAP</span>
+                                        <span class="tech-badge">OpenLDAP</span>
+                                        <span class="tech-badge">Samba AD</span>
+                                        <span class="tech-badge">Linux</span>
+                                        <span class="tech-badge">PAM</span>
+                                        <span class="tech-badge">NSS</span>
+                                        <span class="tech-badge">Kerberos</span>
+                                    </div>
+
+                                    <div class="proof-section">
+                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
+                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
+                                        <a href="Procedure-LDAP.pdf" download class="pdf-download-btn">
+                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
 
                             <div class="realization-card">
                                 <div class="realization-header">
@@ -1492,6 +1513,22 @@
                                     <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
                                 </div>
                                 <div class="realization-body">
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
+                                        <p>Protection d'un reseau contre les menaces externes et mise en place de regles de filtrage avancees.</p>
+                                    </div>
+
+                                    <div class="realization-section">
+                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
+                                        <ul>
+                                            <li>Installation et configuration d'un pare-feu pfSense</li>
+                                            <li>Definition de regles de filtrage par zone</li>
+                                            <li>Mise en place de la journalisation</li>
+                                            <li>Tests de penetration et validation</li>
+                                        </ul>
+                                    </div>
+
                                     <div class="benefit-box">
                                         <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
                                         <p><strong>Protection perimetrique :</strong> Filtrage avance du trafic entrant et sortant.<br>
@@ -1507,25 +1544,11 @@
 
                                     <div class="proof-section">
                                         <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #555;">Procedure complete disponible prochainement</p>
+                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
+
                                     </div>
+
                                 </div>
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte et problematique</h4>
-                                        <p>Protection d'un reseau contre les menaces externes et mise en place de regles de filtrage avancees.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration d'un pare-feu pfSense</li>
-                                            <li>Definition de regles de filtrage par zone</li>
-                                            <li>Mise en place de la journalisation</li>
-                                            <li>Tests de penetration et validation</li>
-                                        </ul>
-                                    </div>
-
-                                    
                             </div>
 
                         </div>
@@ -1534,10 +1557,12 @@
                     <button class="carousel-btn next" onclick="moveCarousel(1)">
                         <i class="fas fa-chevron-right"></i>
                     </button>
+                    </div><!-- /.carousel-nav -->
+                    <div class="carousel-counter">
+                        Projet <span id="carouselCurrent">1</span> / <span id="carouselTotal"></span>
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators"></div>
                 </div>
-
-                <!-- Indicateurs de pagination -->
-                <div class="carousel-indicators" id="carouselIndicators"></div>
             </section>
 
             <section id="parcours">
@@ -1707,7 +1732,7 @@
 
 
             <section id="competences">
-                <h2><i class="fas fa-star"></i> Competences du Referentiel BTS SIO SISR</h2>
+                <h2><i class="fas fa-star"></i> Compétences du Référentiel BTS SIO SISR</h2>
                 
                 <div class="competences-grid">
                     <div class="competence-card">
@@ -1795,7 +1820,7 @@
                             </li>
                             <li>
                                 Developper son projet professionnel
-                                <span class="competence-details">Portfolio, reseau professionnel, certifications</span>
+                                <span class="competence-details">Portfolio, réseau professionnel, certifications</span>
                             </li>
                         </ul>
                     </div>
@@ -1853,11 +1878,11 @@
                 <div class="contact-clean">
                     <p class="contact-intro">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p>
                     <div class="contact-items">
-                        <a href="mailto:simonetchart37@gmail.com" class="contact-tile">
+                        <a href="/cdn-cgi/l/email-protection#3043595d5f5e55445358514244030770575d51595c1e535f5d" class="contact-tile">
                             <div class="contact-tile-icon"><i class="fas fa-envelope"></i></div>
                             <div class="contact-tile-text">
                                 <span>Email</span>
-                                <strong>simonetchart37@gmail.com</strong>
+                                <strong><span class="__cf_email__" data-cfemail="fd8e9490929398899e959c8f89cecabd9a909c9491d39e9290">[email&#160;protected]</span></strong>
                             </div>
                         </a>
                         <a href="https://github.com/simon-etc" target="_blank" class="contact-tile">
@@ -1881,10 +1906,10 @@
 
         <footer>
             <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2026 Simon ETCHART - Portfolio Professionnel</p>
-            <p style="opacity: 0.8;">Technicien Systemes et Reseaux | BTS SIO SISR - ISCB Tours | Alternance SNCF</p>
+            <p style="opacity: 0.8;">Paramètreur Télésurveillance | BTS SIO SISR – ISCB Tours | Alternance SNCF</p>
             <div style="margin-top: 1rem;">
                 <a href="https://github.com/simon-etc" target="_blank" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-                <a href="mailto:simonetchart37@gmail.com" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
+                <a href="/cdn-cgi/l/email-protection#1162787c7e7f74657279706365222651767c70787d3f727e7c" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
             </div>
         </footer>
     </div>
@@ -1894,7 +1919,7 @@
         <img class="modal-content" id="modalImage">
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Navigation smooth scroll
         document.querySelectorAll('.nav-link').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1954,11 +1979,14 @@
             indicatorsContainer.appendChild(indicator);
         }
 
+        document.getElementById('carouselTotal').textContent = totalSlides;
+
         function updateCarousel() {
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
             document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
                 ind.classList.toggle('active', i === currentSlide);
             });
+            document.getElementById('carouselCurrent').textContent = currentSlide + 1;
         }
 
         function goToSlide(index) {
@@ -1975,13 +2003,6 @@
         function goToSlide(index) {
             currentSlide = index;
             updateCarousel();
-        }
-
-        function updateCarousel() {
-            track.style.transform = `translateX(${-currentSlide * 100}%)`;
-            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
         }
 
     </script>
