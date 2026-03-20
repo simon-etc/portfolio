@@ -3,2043 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon ETCHART – Paramètreur Télésurveillance SNCF</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Simon ETCHART — Technicien Systèmes et Réseaux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --anthracite: #2c2f33; --anthracite-light: #3a3d42;
+            --terracotta: #c0755a; --terracotta-soft: #d4926e; --terracotta-pale: #f3e0d4;
+            --cream: #faf7f4; --warm-white: #fdfcfa;
+            --text-dark: #2c2f33; --text-mid: #5a5d63; --text-light: #8a8d93;
+            --border: #e8e4df;
+            --green: #5a9e6f; --green-light: #eaf5ee;
+            --blue-badge: #eaf0f8; --blue-badge-text: #4a6fa5;
+            --shadow-sm: 0 1px 3px rgba(44,47,51,0.06);
+            --shadow-md: 0 4px 16px rgba(44,47,51,0.08);
+            --radius: 12px; --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; scroll-padding-top:76px; }
+        body { font-family:'Source Sans 3',sans-serif; font-weight:400; color:var(--text-dark); background:var(--warm-white); line-height:1.7; -webkit-font-smoothing:antialiased; }
+        h1,h2,h3 { font-family:'DM Serif Display',serif; font-weight:400; line-height:1.25; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f4f6f9;
-        }
+        /* NAV */
+        .nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:rgba(253,252,250,0.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:var(--transition); }
+        .nav.scrolled { border-bottom-color:var(--border); box-shadow:var(--shadow-sm); }
+        .nav-inner { max-width:1140px; margin:0 auto; padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:68px; }
+        .nav-logo { font-family:'DM Serif Display',serif; font-size:1.3rem; color:var(--anthracite); text-decoration:none; }
+        .nav-logo span { color:var(--terracotta); }
+        .nav-links { display:flex; gap:1.6rem; list-style:none; }
+        .nav-links a { text-decoration:none; color:var(--text-mid); font-size:0.88rem; font-weight:500; letter-spacing:0.02em; transition:color var(--transition); position:relative; }
+        .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1.5px; background:var(--terracotta); transition:width var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color:var(--anthracite); }
+        .nav-links a:hover::after, .nav-links a.active::after { width:100%; }
+        .nav-hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+        .nav-hamburger span { display:block; width:22px; height:2px; background:var(--anthracite); border-radius:2px; transition:var(--transition); }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 30px rgba(0,0,0,0.1);
-        }
+        /* HERO */
+        .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; background:var(--anthracite); }
+        .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 20% 80%, rgba(192,117,90,0.15), transparent), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(192,117,90,0.08), transparent); }
+        .hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:60px 60px; }
+        .hero-content { text-align:center; position:relative; z-index:1; padding:2rem; }
+        .hero-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(192,117,90,0.15); border:1px solid rgba(192,117,90,0.25); color:var(--terracotta-soft); padding:0.4rem 1rem; border-radius:50px; font-size:0.8rem; font-weight:500; letter-spacing:0.05em; text-transform:uppercase; margin-bottom:2rem; opacity:0; animation:fadeUp 0.8s 0.2s forwards; }
+        .hero-badge::before { content:''; width:6px; height:6px; background:var(--terracotta); border-radius:50%; }
+        .hero h1 { font-size:clamp(2.8rem,7vw,5rem); color:#fff; letter-spacing:-0.02em; margin-bottom:1rem; opacity:0; animation:fadeUp 0.8s 0.4s forwards; }
+        .hero h1 .accent { color:var(--terracotta-soft); }
+        .hero-subtitle { font-size:clamp(1rem,2.5vw,1.2rem); color:rgba(255,255,255,0.55); font-weight:300; max-width:560px; margin:0 auto 2.5rem; opacity:0; animation:fadeUp 0.8s 0.6s forwards; }
+        .hero-cta { display:inline-flex; align-items:center; gap:0.5rem; background:var(--terracotta); color:#fff; text-decoration:none; padding:0.85rem 2rem; border-radius:50px; font-size:0.9rem; font-weight:500; transition:var(--transition); opacity:0; animation:fadeUp 0.8s 0.8s forwards; }
+        .hero-cta:hover { background:var(--terracotta-soft); transform:translateY(-2px); box-shadow:0 8px 24px rgba(192,117,90,0.3); }
+        .hero-cta svg { width:16px; height:16px; transition:transform var(--transition); }
+        .hero-cta:hover svg { transform:translateX(3px); }
+        .hero-scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); opacity:0; animation:fadeUp 0.8s 1s forwards; }
+        .hero-scroll span { display:block; width:1.5px; height:40px; background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent); margin:0 auto; animation:scrollPulse 2s infinite; }
+        @keyframes scrollPulse { 0%,100%{opacity:.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(.6);transform-origin:top} }
 
-        header {
-            background: linear-gradient(135deg, #2e4057 0%, #3d5a80 60%, #2e4057 100%);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 60% 40%, rgba(74, 144, 217,0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
+        /* SECTIONS */
+        .section { padding:5.5rem 2rem; }
+        .section-inner { max-width:1140px; margin:0 auto; }
+        .section-header { margin-bottom:3rem; }
+        .section-label { display:inline-block; font-size:0.73rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--terracotta); margin-bottom:0.6rem; }
+        .section-title { font-size:clamp(1.8rem,4vw,2.4rem); color:var(--anthracite); letter-spacing:-0.01em; }
+        .section-divider { width:40px; height:2px; background:var(--terracotta); margin-top:0.9rem; border-radius:2px; }
+        .alt-bg { background:var(--cream); }
 
-        .profile-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 900px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
+        /* PRESENTATION */
+        .presentation-card { background:var(--cream); border:1px solid var(--border); border-radius:var(--radius); padding:2.5rem; }
+        .presentation-card p { color:var(--text-mid); font-size:1.04rem; margin-bottom:1rem; }
+        .downloads-row { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+        .btn-dl { display:inline-flex; align-items:center; gap:0.6rem; background:var(--terracotta); color:#fff; padding:0.75rem 1.6rem; border-radius:50px; text-decoration:none; font-size:0.9rem; font-weight:500; transition:var(--transition); }
+        .btn-dl:hover { background:var(--terracotta-soft); transform:translateY(-2px); box-shadow:0 6px 20px rgba(192,117,90,0.25); }
 
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4a90d9, #3a7abf);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 40px rgba(74, 144, 217, 0.4);
-            border: 6px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
+        /* ENTREPRISE */
+        .company-card { background:var(--anthracite); color:#fff; border-radius:var(--radius); padding:2.5rem; position:relative; overflow:hidden; }
+        .company-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 20% 80%, rgba(192,117,90,0.1), transparent); }
+        .company-header { display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; flex-wrap:wrap; position:relative; }
+        .company-logo { width:100px; height:100px; background:#fff; border-radius:var(--radius); display:flex; align-items:center; justify-content:center; overflow:hidden; padding:12px; flex-shrink:0; }
+        .company-logo img { width:100%; height:100%; object-fit:contain; }
+        .company-logo i { font-size:2.5rem; color:var(--terracotta); }
+        .company-info h3 { font-size:1.6rem; margin-bottom:0.3rem; color:#fff; }
+        .company-info p { font-size:0.95rem; color:rgba(255,255,255,0.65); }
+        .company-description { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-left:3px solid var(--terracotta); padding:1.5rem; border-radius:var(--radius-sm); margin-bottom:2rem; position:relative; }
+        .company-description h4 { font-family:'Source Sans 3',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:0.75rem; color:#fff; }
+        .company-description p { line-height:1.75; font-size:0.97rem; color:rgba(255,255,255,0.7); }
+        .missions-title { font-family:'Source Sans 3',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:1rem; color:rgba(255,255,255,0.9); position:relative; }
+        .missions-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; position:relative; }
+        .mission-item { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); padding:1.25rem; border-radius:var(--radius-sm); transition:var(--transition); }
+        .mission-item:hover { background:rgba(255,255,255,0.1); transform:translateY(-3px); }
+        .mission-item h4 { font-family:'Source Sans 3',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:0.4rem; display:flex; align-items:center; gap:0.5rem; color:#fff; }
+        .mission-item h4 i { color:var(--terracotta-soft); }
+        .mission-item p { font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.55; }
 
-        .profile-img:hover {
-            transform: scale(1.08) rotate(3deg);
-            box-shadow: 0 25px 50px rgba(74, 144, 217, 0.5);
-        }
-
-        .profile-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-img i {
-            font-size: 4rem;
-            color: #4a90d9;
-        }
-
-        .profile-info {
-            text-align: left;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-
-        .subtitle {
-            font-size: 1.4rem;
-            opacity: 0.95;
-            margin-bottom: 1rem;
-        }
-
-        .header-contact {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .header-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        nav {
-            background: #2e4057;
-            padding: 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 1.2rem 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-bottom: 3px solid transparent;
-            font-weight: 600;
-            position: relative;
-            letter-spacing: 0.5px;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #4a90d9, #3a7abf);
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::before,
-        nav a.active::before {
-            width: 80%;
-        }
-
-        nav a:hover,
-        nav a.active {
-            background: rgba(74, 144, 217, 0.15);
-            color: #5dade2;
-        }
-
-        main {
-            padding: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-
-        section:nth-child(even) {
-            background: #f8fafc;
-            margin-left: -3rem;
-            margin-right: -3rem;
-            padding-left: 3rem;
-            padding-right: 3rem;
-        }
-        section {
-            margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
-        }
-
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h2 {
-            color: #2e4057;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 3px solid #4a90d9;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        h2 i {
-            color: #4a90d9;
-        }
-
-        .company-card {
-            background: linear-gradient(135deg, #4a90d9 0%, #3a7abf 100%);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 40px rgba(74, 144, 217, 0.3);
-        }
-
-        .company-header {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .company-logo {
-            width: 140px;
-            height: 140px;
-            background: white;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            overflow: hidden;
-            padding: 15px;
-        }
-
-        .company-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .company-logo i {
-            font-size: 3.5rem;
-            color: #4a90d9;
-        }
-
-        .company-info h3 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .company-info p {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
-
-        .company-description {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid white;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .company-description h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .company-description p {
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .company-missions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .mission-item {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .mission-item:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px);
-        }
-
-        .mission-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .realizations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
         /* CAROUSEL */
-        .carousel-container {
-            position: relative;
-            max-width: 860px;
-            margin: 2rem auto 0;
-            padding: 0;
-        }
-
-        .carousel-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .carousel-wrapper {
-            overflow: hidden;
-            width: 100%;
-            border-radius: 14px;
-            box-shadow: 0 8px 30px rgba(46,64,87,0.12);
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
-            will-change: transform;
-        }
-
-        .carousel-track .realization-card {
-            min-width: 100%;
-            width: 100%;
-            flex: 0 0 100%;
-        }
-
-        .carousel-btn {
-            flex-shrink: 0;
-            background: white;
-            color: #4a90d9;
-            border: 2px solid #d8e6f5;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 2px 8px rgba(74,144,217,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-btn:hover {
-            background: #4a90d9;
-            color: white;
-            border-color: #4a90d9;
-            box-shadow: 0 4px 14px rgba(74,144,217,0.35);
-            transform: scale(1.08);
-        }
-
-        .carousel-btn i { font-size: 1rem; }
-
-        .carousel-counter {
-            text-align: center;
-            margin-top: 1.2rem;
-            font-size: 0.85rem;
-            color: #95a5a6;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 0.7rem;
-        }
-
-        .carousel-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #d0d8e4;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-indicator.active {
-            background: #4a90d9;
-            width: 24px;
-            border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-            .carousel-btn { width: 38px; height: 38px; }
-        }
-
-        /* === REALISATIONS === */
-        .benefit-box {
-            background: linear-gradient(135deg, #f0faf4, #dff5e8);
-            border-left: 4px solid #48c774;
-            padding: 1rem 1.2rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            order: -1;
-        }
-        .benefit-box h4 {
-            color: #1e8449;
-            margin-bottom: 0.5rem;
-            font-size: 0.92rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-        .benefit-box p { color: #1a5c32; line-height: 1.6; font-size: 0.92rem; }
-        .realization-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            border: 1px solid #ecf0f1;
-            position: relative;
-        }
-
-        .realization-header {
-            background: linear-gradient(135deg, #2e4057 0%, #3d5a80 100%);
-            color: white;
-            padding: 1.4rem 1.6rem;
-        }
-
-        .realization-header h3 {
-            font-size: 1.15rem;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .realization-context {
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-
-        .realization-body { padding: 1.4rem 1.6rem; }
-
-        .realization-section { margin-bottom: 1.2rem; }
-
-        .realization-section h4 {
-            color: #4a90d9;
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-        }
-
-        .realization-section ul { list-style: none; padding-left: 0; }
-
-        .realization-section li {
-            padding: 0.35rem 0 0.35rem 1.2rem;
-            position: relative;
-            color: #555;
-            font-size: 0.92rem;
-        }
-
-        .realization-section li:before {
-            content: "▸";
-            position: absolute;
-            left: 0;
-            color: #4a90d9;
-        }
-
-
-        .pdf-download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, #4a90d9, #3a7abf);
-            color: white;
-            padding: 0.6rem 1.3rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            box-shadow: 0 3px 10px rgba(74,144,217,0.25);
-            margin-top: 0.3rem;
-        }
-        .pdf-download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(74,144,217,0.35);
-        }
-        .pdf-download-btn i { font-size: 0.9rem; }
-        .proof-section {
-            background: #f8f9fa;
-            padding: 1rem 1.2rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            border: 1px solid #ecf0f1;
-        }
-
-        .proof-section h4 {
-            color: #27ae60;
-            margin-bottom: 0.7rem;
-            font-size: 0.9rem;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .tech-badge {
-            background: #eaf4fd;
-            color: #3a7abf;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* === TIMELINE PARCOURS === */
-        .timeline {
-            position: relative;
-            margin-top: 2.5rem;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #4a90d9, #3a7abf);
-            border-radius: 3px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.42rem;
-            top: 1.2rem;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: #4a90d9;
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px #4a90d9;
-        }
-
-        .timeline-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.3rem 1.6rem;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-            border: 1px solid #ecf0f1;
-            transition: all 0.25s ease;
-        }
-
-        .timeline-card:hover {
-            border-color: #4a90d9;
-            box-shadow: 0 6px 25px rgba(74, 144, 217,0.15);
-            transform: translateX(4px);
-        }
-
-        .timeline-top {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .timeline-logo {
-            width: 44px;
-            height: 44px;
-            background: #f0f7ff;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 1px solid #d1e7f8;
-            overflow: hidden;
-            padding: 5px;
-        }
-
-        .timeline-logo img { width: 100%; height: 100%; object-fit: contain; }
-        .timeline-logo i { color: #4a90d9; font-size: 1.2rem; }
-
-        .timeline-meta h3 {
-            color: #2e4057;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.2rem;
-        }
-
-        .timeline-meta .tl-date { color: #4a90d9; font-size: 0.85rem; font-weight: 600; }
-        .timeline-meta .tl-location { color: #95a5a6; font-size: 0.82rem; }
-
-        .timeline-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.8rem;
-        }
-
-        .tl-tag {
-            background: #eaf4fd;
-            color: #3a7abf;
-            padding: 0.25rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        /* === CONTACT REFAIT === */
-        .contact-clean {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            margin-top: 2rem;
-        }
-
-        .contact-clean p.contact-intro {
-            color: #555;
-            font-size: 1.05rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-tile {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.1rem 1.3rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #ecf0f1;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .contact-tile:hover {
-            border-color: #4a90d9;
-            background: #eaf4fd;
-            transform: translateY(-2px);
-        }
-
-        .contact-tile-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #4a90d9, #3a7abf);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .contact-tile-text span {
-            display: block;
-            font-size: 0.78rem;
-            color: #95a5a6;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-tile-text strong {
-            font-size: 0.95rem;
-            color: #2e4057;
-        }
-
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .experience-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 2px solid #ecf0f1;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .experience-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 0;
-            background: linear-gradient(180deg, #4a90d9, #3a7abf);
-            transition: height 0.3s ease;
-        }
-
-        .experience-card:hover {
-            border-color: #4a90d9;
-            box-shadow: 0 12px 35px rgba(74, 144, 217, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .experience-card:hover::before {
-            height: 100%;
-        }
-
-        .experience-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .experience-logo {
-            width: 80px;
-            height: 80px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            border: 2px solid #ecf0f1;
-            overflow: hidden;
-            padding: 8px;
-        }
-
-        .experience-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .experience-logo i {
-            color: #4a90d9;
-            font-size: 2rem;
-        }
-
-        .experience-title {
-            flex: 1;
-        }
-
-        .experience-title h3 {
-            color: #2e4057;
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .experience-title .date {
-            color: #4a90d9;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .experience-title .location {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        .experience-content h4 {
-            color: #4a90d9;
-            margin: 1rem 0 0.5rem 0;
-            font-size: 1.05rem;
-        }
-
-        .experience-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .experience-content li {
-            padding: 0.4rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .experience-content li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .experience-content p {
-            color: #555;
-        }
-
-        /* === COMPETENCES === */
-        .competences-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .competence-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.07);
-            border: 1px solid #ecf0f1;
-            border-top: 3px solid #4a90d9;
-            transition: all 0.25s ease;
-        }
-
-        .competence-card:hover {
-            box-shadow: 0 6px 25px rgba(74, 144, 217,0.15);
-            transform: translateY(-3px);
-        }
-
-        .competence-card h3 {
-            color: #2e4057;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .competence-card h3 i { color: #4a90d9; }
-
-        .competence-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-
-        .competence-list li {
-            padding: 0.55rem 0 0.55rem 1.4rem;
-            position: relative;
-            color: #444;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.92rem;
-            line-height: 1.4;
-        }
-
-        .competence-list li:last-child { border-bottom: none; }
-
-        .competence-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #27ae60;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .competence-details {
-            font-size: 0.8rem;
-            color: #95a5a6;
-            font-weight: normal;
-            margin-top: 0.15rem;
-            display: block;
-        }
-
-        .certifications-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .certification-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border: 2px solid #ecf0f1;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .certification-card:hover {
-            border-color: #27ae60;
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(39, 174, 96, 0.2);
-        }
-
-        .certification-icon {
-            transition: all 0.3s ease;
-        }
-
-        .certification-card:hover .certification-icon {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .certification-icon {
-            font-size: 3rem;
-            color: #27ae60;
-            margin-bottom: 1rem;
-        }
-
-        .certification-card h3 {
-            color: #2e4057;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .certification-card p {
-            color: #7f8c8d;
-        }
-
-        .certification-date {
-            color: #4a90d9;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .certification-badge {
-            display: inline-block;
-            background: #2ecc71;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            font-weight: 600;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            overflow: auto;
-        }
-
-        .modal-content {
-            margin: 2% auto;
-            display: block;
-            max-width: 90%;
-            max-height: 90%;
-            animation: zoom 0.3s;
-        }
-
-        @keyframes zoom {
-            from {transform: scale(0.8)}
-            to {transform: scale(1)}
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 30px;
-            right: 50px;
-            color: #f1f1f1;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-modal:hover {
-            color: #bbb;
-        }
-
-        /* === SECTION PRESENTATION === */
-        .presentation-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 5px solid #4a90d9;
-            margin-top: 2rem;
-        }
-
-        .presentation-card p {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
-        .presentation-downloads {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-download {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            background: linear-gradient(135deg, #4a90d9, #3a7abf);
-            color: white;
-            padding: 0.9rem 1.8rem;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(74, 144, 217,0.3);
-            flex: 1;
-            justify-content: center;
-            min-width: 220px;
-        }
-
-
-        .btn-download:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(74, 144, 217,0.45);
-        }
-
-        .btn-download i {
-            font-size: 1.2rem;
-        }
-
-        footer {
-            background: #2e4057;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer a {
-            color: white;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #4a90d9;
-        }
-
-        @media (max-width: 1024px) {
-            .realizations-grid {
-                grid-template-columns: 1fr;
-            }
-            .company-missions {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            main {
-                padding: 1.5rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            h2 {
-                font-size: 1.6rem;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .profile-info {
-                text-align: center;
-            }
-            .header-contact {
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-            nav a {
-                padding: 1rem;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                font-size: 0.9rem;
-            }
-            .experience-grid,
-            .competences-grid,
-            .certifications-grid {
-                grid-template-columns: 1fr;
-            }
-            .company-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .company-info h3 {
-                font-size: 1.6rem;
-            }
-            .company-card {
-                padding: 1.5rem;
-            }
-            .realizations-grid {
-                grid-template-columns: 1fr;
-            }
-            .experience-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .experience-title {
-                text-align: center;
-            }
-            .tabs-nav {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            .subtitle {
-                font-size: 1.1rem;
-            }
-            .company-logo {
-                width: 100px;
-                height: 100px;
-            }
-            .profile-img {
-                width: 140px;
-                height: 140px;
-            }
-            header {
-                padding: 2rem 1rem;
-            }
-            .realization-body {
-                padding: 1.5rem;
-            }
-            .competence-card {
-                padding: 1.5rem;
-            }
-            .experience-card {
-                padding: 1.5rem;
-            }
+        .carousel-container { position:relative; }
+        .carousel-viewport { overflow:hidden; border-radius:var(--radius); }
+        .carousel-track { display:flex; transition:transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .carousel-slide { min-width:100%; flex:0 0 100%; }
+        .project-card { background:var(--cream); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; }
+        .project-header { background:var(--anthracite); color:#fff; padding:2rem 2.5rem; position:relative; }
+        .project-header::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%, rgba(192,117,90,0.1), transparent); }
+        .project-header h3 { font-size:1.5rem; position:relative; display:flex; align-items:center; gap:0.7rem; }
+        .project-header h3 i { color:var(--terracotta-soft); font-size:1.3rem; }
+        .project-context { font-size:0.95rem; color:rgba(255,255,255,0.55); margin-top:0.4rem; position:relative; }
+        .project-body { padding:2.5rem 2.5rem 2rem; }
+        .benefit-box { background:var(--green-light); border-left:4px solid var(--green); padding:1.25rem 1.5rem; border-radius:var(--radius-sm); margin-bottom:2rem; }
+        .benefit-box h4 { font-family:'Source Sans 3',sans-serif; color:var(--green); font-size:0.9rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem; }
+        .benefit-box p { color:#3a6b4a; font-size:1.02rem; line-height:1.7; }
+        .project-section { margin-bottom:1.5rem; }
+        .project-section h4 { font-family:'Source Sans 3',sans-serif; color:var(--terracotta); font-size:0.95rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.7rem; display:flex; align-items:center; gap:0.5rem; }
+        .project-section p { color:var(--text-mid); font-size:1.05rem; line-height:1.7; }
+        .project-section ul { list-style:none; padding:0; }
+        .project-section li { padding:0.4rem 0 0.4rem 1.5rem; position:relative; color:var(--text-mid); font-size:1.02rem; line-height:1.6; }
+        .project-section li::before { content:"▸"; position:absolute; left:0; color:var(--terracotta); font-weight:600; }
+
+        /* TECH BADGES WITH LOGOS */
+        .tech-stack { display:flex; flex-wrap:wrap; gap:0.6rem; margin-bottom:1.5rem; }
+        .tech-badge { display:inline-flex; align-items:center; gap:0.45rem; background:var(--blue-badge); color:var(--blue-badge-text); padding:0.4rem 0.9rem; border-radius:50px; font-size:0.92rem; font-weight:500; }
+        .tech-badge img { width:18px; height:18px; object-fit:contain; }
+        .tech-badge i { font-size:16px; }
+
+        .proof-section { background:var(--warm-white); border:1px solid var(--border); padding:1.25rem 1.5rem; border-radius:var(--radius-sm); margin-top:1.5rem; }
+        .proof-section h4 { color:var(--green)!important; font-size:0.95rem; }
+        .proof-section p { color:var(--text-mid); font-size:1rem; margin-bottom:0.85rem; }
+        .pdf-download-btn { display:inline-flex; align-items:center; gap:0.6rem; background:var(--terracotta); color:#fff; padding:0.6rem 1.5rem; border-radius:50px; text-decoration:none; font-size:0.95rem; font-weight:500; transition:var(--transition); }
+        .pdf-download-btn:hover { background:var(--terracotta-soft); transform:translateY(-1px); }
+        .carousel-controls { display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:2.5rem; }
+        .carousel-btn { width:50px; height:50px; border-radius:50%; border:1px solid var(--border); background:var(--warm-white); cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-mid); transition:var(--transition); }
+        .carousel-btn:hover { border-color:var(--terracotta); color:var(--terracotta); box-shadow:var(--shadow-sm); }
+        .carousel-btn svg { width:20px; height:20px; }
+        .carousel-counter { font-size:0.85rem; color:var(--text-light); font-variant-numeric:tabular-nums; min-width:50px; text-align:center; }
+        .carousel-counter .current { color:var(--anthracite); font-weight:600; }
+        .carousel-dots { display:flex; gap:0.5rem; }
+        .carousel-dot { width:8px; height:8px; border-radius:50%; background:var(--border); border:none; cursor:pointer; transition:var(--transition); }
+        .carousel-dot.active { background:var(--terracotta); width:24px; border-radius:4px; }
+
+        /* TIMELINE */
+        .timeline { position:relative; margin-top:1rem; padding-left:2rem; }
+        .timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--terracotta), var(--terracotta-soft), var(--border)); border-radius:2px; }
+        .timeline-item { position:relative; margin-bottom:1.5rem; padding-left:2rem; }
+        .timeline-item::before { content:''; position:absolute; left:-2.38rem; top:1.2rem; width:12px; height:12px; border-radius:50%; background:var(--terracotta); border:3px solid var(--cream); box-shadow:0 0 0 2px var(--terracotta); }
+        .timeline-card { background:var(--warm-white); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem 1.5rem; transition:var(--transition); }
+        .timeline-card:hover { border-color:var(--terracotta-pale); box-shadow:var(--shadow-md); transform:translateX(4px); }
+        .timeline-top { display:flex; align-items:center; gap:1rem; }
+        .timeline-logo { width:44px; height:44px; background:var(--cream); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid var(--border); overflow:hidden; padding:5px; }
+        .timeline-logo img { width:100%; height:100%; object-fit:contain; }
+        .timeline-logo i { color:var(--terracotta); font-size:1.1rem; }
+        .timeline-meta h3 { font-family:'Source Sans 3',sans-serif; color:var(--anthracite); font-size:1rem; font-weight:700; margin-bottom:0.15rem; }
+        .timeline-meta .tl-date { color:var(--terracotta); font-size:0.82rem; font-weight:600; }
+        .timeline-meta .tl-location { color:var(--text-light); font-size:0.8rem; }
+        .timeline-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.75rem; }
+        .tl-tag { background:var(--blue-badge); color:var(--blue-badge-text); padding:0.2rem 0.65rem; border-radius:50px; font-size:0.78rem; font-weight:500; }
+
+        /* COMPETENCES WITH LOGOS */
+        .competences-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:1.25rem; }
+        .competence-card { background:var(--cream); border:1px solid var(--border); border-radius:var(--radius); padding:1.75rem; position:relative; overflow:hidden; transition:var(--transition); }
+        .competence-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--terracotta),var(--terracotta-soft)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease; }
+        .competence-card:hover { border-color:var(--terracotta-pale); box-shadow:var(--shadow-md); transform:translateY(-3px); }
+        .competence-card:hover::before { transform:scaleX(1); }
+        .competence-card h3 { font-family:'Source Sans 3',sans-serif; color:var(--anthracite); font-size:1rem; font-weight:700; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.6rem; }
+        .competence-card h3 i { color:var(--terracotta); font-size:1.1rem; }
+        .skill-logos { display:flex; flex-wrap:wrap; gap:0.75rem; }
+        .skill-logo-item { display:flex; flex-direction:column; align-items:center; gap:0.35rem; width:70px; }
+        .skill-logo-item img, .skill-logo-item i { width:32px; height:32px; object-fit:contain; }
+        .skill-logo-item i { font-size:32px; display:flex; align-items:center; justify-content:center; }
+        .skill-logo-item span { font-size:0.68rem; color:var(--text-mid); text-align:center; font-weight:500; line-height:1.2; }
+
+        /* CERTIFICATIONS */
+        .certifications-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1.25rem; }
+        .cert-card { background:var(--cream); border:1px solid var(--border); border-radius:var(--radius); padding:1.75rem; text-align:center; transition:var(--transition); cursor:pointer; }
+        .cert-card:hover { border-color:var(--terracotta-pale); box-shadow:var(--shadow-md); transform:translateY(-4px); }
+        .cert-icon-wrapper { width:56px; height:56px; margin:0 auto 1rem; background:var(--terracotta-pale); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--terracotta); font-size:1.4rem; transition:var(--transition); }
+        .cert-card:hover .cert-icon-wrapper { transform:scale(1.1) rotate(5deg); }
+        .cert-card h3 { font-family:'Source Sans 3',sans-serif; font-size:1rem; font-weight:600; color:var(--anthracite); margin-bottom:0.35rem; }
+        .cert-desc { font-size:0.88rem; color:var(--text-mid); margin-bottom:0.4rem; }
+        .cert-date { font-size:0.82rem; color:var(--terracotta); font-weight:600; }
+        .cert-badge { display:inline-block; background:var(--terracotta); color:#fff; padding:0.25rem 0.8rem; border-radius:50px; font-size:0.78rem; font-weight:500; margin-top:0.6rem; }
+
+        /* CONTACT */
+        .contact-bg { background:var(--anthracite); color:#fff; }
+        .contact-bg .section-label { color:var(--terracotta-soft); }
+        .contact-bg .section-title { color:#fff; }
+        .contact-bg .section-divider { background:var(--terracotta-soft); }
+        .contact-intro { color:rgba(255,255,255,0.6); font-size:1.02rem; margin-bottom:2rem; }
+        .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1.25rem; }
+        .contact-item { display:flex; align-items:center; gap:1rem; padding:1.25rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); transition:var(--transition); text-decoration:none; color:inherit; }
+        .contact-item:hover { background:rgba(255,255,255,0.08); border-color:rgba(192,117,90,0.3); transform:translateY(-2px); }
+        .contact-icon { width:42px; height:42px; flex-shrink:0; background:rgba(192,117,90,0.15); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--terracotta-soft); font-size:1rem; }
+        .contact-label-text { font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.15rem; }
+        .contact-value { font-size:0.92rem; color:rgba(255,255,255,0.85); }
+
+        /* FOOTER */
+        .footer { background:var(--anthracite); border-top:1px solid rgba(255,255,255,0.06); padding:2rem; text-align:center; }
+        .footer p { font-size:0.82rem; color:rgba(255,255,255,0.3); }
+        .footer-links { margin-top:0.75rem; display:flex; justify-content:center; gap:1.5rem; }
+        .footer-links a { color:rgba(255,255,255,0.35); font-size:1.2rem; transition:color var(--transition); text-decoration:none; }
+        .footer-links a:hover { color:var(--terracotta-soft); }
+
+        /* MODAL */
+        .modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.88); backdrop-filter:blur(6px); }
+        .modal-content { margin:3% auto; display:block; max-width:90%; max-height:90vh; border-radius:var(--radius); animation:modalZoom 0.3s ease; }
+        @keyframes modalZoom { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
+        .close-modal { position:absolute; top:24px; right:40px; color:rgba(255,255,255,0.7); font-size:2.5rem; cursor:pointer; transition:color var(--transition); line-height:1; }
+        .close-modal:hover { color:#fff; }
+
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity:1; transform:translateY(0); }
+
+        @media(max-width:900px) { .company-header{flex-direction:column;text-align:center} .missions-grid{grid-template-columns:1fr} }
+        @media(max-width:640px) {
+            .section{padding:3.5rem 1.25rem}
+            .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(253,252,250,0.98);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}
+            .nav-links.open{display:flex} .nav-hamburger{display:flex}
+            .competences-grid,.certifications-grid,.contact-grid{grid-template-columns:1fr}
+            .downloads-row{flex-direction:column}
+            .company-logo{width:80px;height:80px} .company-info h3{font-size:1.3rem}
+            .skill-logo-item{width:60px} .skill-logo-item img,.skill-logo-item i{width:26px;height:26px;font-size:26px}
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <div class="profile-img">
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="profile-info">
-                    <h1>Simon ETCHART</h1>
-                    <p class="subtitle">Technicien Systèmes &amp; Réseaux | Alternance SNCF</p>
-                    <div class="header-contact">
-                        <div class="header-contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Tours, France</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <nav>
-            <div class="nav-container">
-                <a href="#presentation" class="nav-link">Présentation</a>
-                <a href="#entreprise" class="nav-link">Entreprise</a>
-                <a href="#realisations" class="nav-link">Réalisations</a>
-                <a href="#parcours" class="nav-link">Parcours</a>
-                <a href="#competences" class="nav-link">Compétences</a>
-                <a href="#certifications" class="nav-link">Certifications</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-        </nav>
-
-        <main>
-            <section id="presentation">
-                <h2><i class="fas fa-user-circle"></i> Présentation</h2>
-
-                <div class="presentation-card">
-                    <p>
-                        Je m'appelle <strong>Simon ETCHART</strong>, actuellement en <strong>BTS SIO option SISR</strong> en alternance à l'ISCB de Tours. Je travaille au sein de la <strong>SNCF</strong> en tant que Technicien Systèmes et Réseaux depuis septembre 2024, où j'interviens sur l'le paramétrage de systèmes de télésurveillance dans les équipements de signalisation ferroviaire.
-                    </p>
-                    <p style="margin-top: 1rem;">
-                        Mon parcours a débuté avec un <strong>Bac Systèmes Numériques</strong> au lycée Henri Becquerel, complété par plusieurs stages en entreprise (ICV Informatique, Mairie de Joué-lès-Tours, Faculté de Médecine de Tours). Passionné par la cybersécurité et les infrastructures, je prépare activement plusieurs certifications professionnelles.
-                    </p>
-
-                    <div class="presentation-downloads">
-                        <a href="CV-Simon-ETCHART.pdf" download class="btn-download">
-                            <i class="fas fa-file-pdf"></i> Télécharger mon CV
-                        </a>
-                        <a href="Tableau-Competences.pdf" download class="btn-download">
-                            <i class="fas fa-table"></i> Tableau de compétences
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="entreprise">
-                <h2><i class="fas fa-building"></i> SNCF</h2>
-                
-                <div class="company-card">
-                    <div class="company-header">
-                        <div class="company-logo">
-                            <img src="logo-sncf.png" alt="Logo SNCF" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                            <i class="fas fa-train" style="display: none;"></i>
-                        </div>
-                        <div class="company-info">
-                            <h3>SNCF – Société Nationale des Chemins de fer Français</h3>
-                            <p><i class="fas fa-map-marker-alt"></i> France | <i class="fas fa-users"></i> +150 000 collaborateurs | <i class="fas fa-industry"></i> Transport ferroviaire</p>
-                        </div>
-                    </div>
-                    
-                    <div class="company-description">
-                        <h4>Présentation de l'entreprise</h4>
-                        <p>
-                            La SNCF est l'entreprise ferroviaire publique française, premier réseau ferroviaire d'Europe avec plus de 30 000 km de lignes. Elle assure quotidiennement le transport de millions de voyageurs via ses services TGV, Intercités, TER et Transilien, tout en gérant l'ensemble des infrastructures ferroviaires nationales.
-                        </p>
-                    </div>
-
-                    <h4 style="font-size: 1.1rem; margin-bottom: 1rem; opacity: 0.9;">Activités principales</h4>
-                    <div class="company-missions">
-                        <div class="mission-item">
-                            <h4><i class="fas fa-train"></i> Transport de voyageurs</h4>
-                            <p>15 millions de voyageurs/jour — TGV, Intercités, TER, Transilien</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-wrench"></i> Gestion de l'infrastructure</h4>
-                            <p>Entretien et modernisation de 30 000 km de voies ferrées</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-lightbulb"></i> Innovation & numérique</h4>
-                            <p>Développement de solutions digitales et de mobilité durable</p>
-                        </div>
-                    </div>
-
-                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem; margin-top: 2rem;">Mes missions en alternance à la SNCF</h4>
-                    <div class="company-missions">
-                        <div class="mission-item">
-                            <h4><i class="fas fa-broadcast-tower"></i> Paramétrage Télésurveillance</h4>
-                            <p>Configuration et paramétrage des systèmes de télésurveillance intégrés aux équipements de signalisation ferroviaire</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-train"></i> Signalisation Ferroviaire</h4>
-                            <p>Intervention sur les systèmes de signalisation du réseau SNCF : diagnostic, paramétrage et validation des équipements</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-clipboard-check"></i> Tests & Validation</h4>
-                            <p>Réalisation de tests fonctionnels et validation des configurations avant mise en production sur le réseau ferroviaire</p>
-                        </div>
-                        <div class="mission-item">
-                            <h4><i class="fas fa-file-alt"></i> Documentation Technique</h4>
-                            <p>Rédaction de procédures d'exploitation et de fiches techniques pour les équipements de télésurveillance</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="realisations">
-                <h2><i class="fas fa-project-diagram"></i> Mes Réalisations et Projets</h2>
-                
-                <div class="carousel-container">
-                    <div class="carousel-nav">
-                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-
-                    <div class="carousel-wrapper">
-                        <div class="carousel-track" id="carouselTrack">
-
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-server"></i> Mise en place Active Directory avec controle d'acces</h3>
-                                    <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Decembre 2024</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Mise en place d'un environnement Active Directory pour gerer les utilisateurs et appliquer des politiques de securite differenciees selon les profils.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration d'un serveur Windows Server 2022</li>
-                                            <li>Deploiement du role Active Directory Domain Services (AD DS)</li>
-                                            <li>Creation de deux comptes utilisateurs avec niveaux d'acces differents</li>
-                                            <li>Configuration d'un groupe de securite pour faciliter la gestion des droits</li>
-                                            <li>Mise en place de GPO (Group Policy Objects) pour appliquer des politiques de securite</li>
-                                            <li>Tests de connexion et verification des restrictions d'acces</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Centralisation de la gestion :</strong> Controle unifie des utilisateurs et groupes depuis une console unique.<br>
-                                        <strong>Securite renforcee :</strong> Application automatique des politiques selon les profils, limitation des privileges.<br>
-                                        <strong>Scalabilite :</strong> Infrastructure evolutive facilitant l'ajout de nouveaux utilisateurs et politiques.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">Windows Server 2022</span>
-                                        <span class="tech-badge">Active Directory</span>
-                                        <span class="tech-badge">GPO</span>
-                                        <span class="tech-badge">PowerShell</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète détaillée disponible en téléchargement</p>
-                                        <a href="Procedure-Active-Directory.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-globe"></i> Creation d'un portfolio professionnel avec GitHub Pages</h3>
-                                    <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Janvier 2025</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Necessite de creer une vitrine professionnelle en ligne pour presenter mon parcours, mes competences et mes realisations dans le cadre du BTS SIO SISR.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Conception et developpement d'un site web responsive en HTML5/CSS3</li>
-                                            <li>Creation d'un repository GitHub pour le versioning du code</li>
-                                            <li>Configuration de GitHub Pages pour l'hebergement gratuit</li>
-                                            <li>Implementation d'un design professionnel avec animations CSS</li>
-                                            <li>Intégration de sections : entreprise, réalisations, compétences, parcours</li>
-                                            <li>Ajout de fonctionnalites interactives (navigation smooth scroll, modal)</li>
-                                            <li>Optimisation responsive pour mobile, tablette et desktop</li>
-                                            <li>Réalisé avec l'assistance de Claude (Anthropic) pour la structure et le design</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le developpement professionnel</h4>
-                                        <p><strong>Visibilite en ligne :</strong> Presence professionnelle accessible 24/7 pour les recruteurs.<br>
-                                        <strong>Demonstration de competences :</strong> Preuve concrete de maitrise du web et des outils de versioning.<br>
-                                        <strong>Evolution continue :</strong> Portfolio facilement modifiable pour ajouter de nouvelles realisations.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">HTML5</span>
-                                        <span class="tech-badge">CSS3</span>
-                                        <span class="tech-badge">JavaScript</span>
-                                        <span class="tech-badge">Git</span>
-                                        <span class="tech-badge">GitHub Pages</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète de création et déploiement disponible</p>
-                                        <a href="Procedure-Creation-Portfolio.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-layer-group"></i> Installation d'un serveur LAMP securise</h3>
-                                    <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Deploiement d'un serveur web LAMP (Linux, Apache, MySQL, PHP) dans un environnement securise pour heberger des applications web internes.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration de Linux (Debian/Ubuntu Server)</li>
-                                            <li>Deploiement et securisation du serveur Apache</li>
-                                            <li>Installation et configuration de MySQL/MariaDB</li>
-                                            <li>Configuration de PHP et des modules necessaires</li>
-                                            <li>Mise en place du certificat SSL/TLS (HTTPS)</li>
-                                            <li>Configuration du pare-feu et durcissement systeme</li>
-                                            <li>Tests de securite et validation</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Hebergement interne :</strong> Serveur web operationnel pour les applications metier.<br>
-                                        <strong>Securite :</strong> Communications chiffrees et systeme durci contre les attaques.<br>
-                                        <strong>Performances :</strong> Stack optimise pour repondre aux besoins applicatifs.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">Linux</span>
-                                        <span class="tech-badge">Apache</span>
-                                        <span class="tech-badge">MySQL</span>
-                                        <span class="tech-badge">PHP</span>
-                                        <span class="tech-badge">SSL/TLS</span>
-                                        <span class="tech-badge">UFW / iptables</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
-                                        <a href="Procedure-LAMP.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-address-book"></i> Authentification/gestion centralisee et service d'annuaire sous LINUX : LDAP, OpenLDAP et Samba AD</h3>
-                                    <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Mise en place d'une solution d'authentification et de gestion centralisee des utilisateurs sous Linux via un annuaire LDAP, OpenLDAP et Samba Active Directory pour unifier la gestion des identites dans un environnement heterogene.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration d'OpenLDAP sur serveur Linux</li>
-                                            <li>Structure de l'annuaire (DIT) : OU, CN, groupes et utilisateurs</li>
-                                            <li>Configuration de PAM et NSS pour l'authentification LDAP</li>
-                                            <li>Deploiement de Samba en mode Active Directory Domain Controller</li>
-                                            <li>Integration des clients Linux et Windows dans le domaine Samba AD</li>
-                                            <li>Gestion des politiques de mot de passe et des ACL</li>
-                                            <li>Tests d'authentification et de partages de fichiers cross-plateforme</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs Linux et Windows.<br>
-                                        <strong>Interoperabilite :</strong> Environnement heterogene unifie grace a Samba AD.<br>
-                                        <strong>Securite :</strong> Politiques de mots de passe centralisees et gestion fine des acces.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">LDAP</span>
-                                        <span class="tech-badge">OpenLDAP</span>
-                                        <span class="tech-badge">Samba AD</span>
-                                        <span class="tech-badge">Linux</span>
-                                        <span class="tech-badge">PAM</span>
-                                        <span class="tech-badge">NSS</span>
-                                        <span class="tech-badge">Kerberos</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
-                                        <a href="Procedure-LDAP.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-shield-alt"></i> Securisation infrastructure avec pare-feu</h3>
-                                    <p class="realization-context"><i class="fas fa-graduation-cap"></i> Projet BTS | A venir</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Protection d'un reseau contre les menaces externes et mise en place de regles de filtrage avancees.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Installation et configuration d'un pare-feu pfSense</li>
-                                            <li>Definition de regles de filtrage par zone</li>
-                                            <li>Mise en place de la journalisation</li>
-                                            <li>Tests de penetration et validation</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le systeme d'information</h4>
-                                        <p><strong>Protection perimetrique :</strong> Filtrage avance du trafic entrant et sortant.<br>
-                                        <strong>Visibilite accrue :</strong> Logs centralises permettant l'analyse des tentatives d'intrusion.<br>
-                                        <strong>Conformite :</strong> Respect des bonnes pratiques de securite.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">pfSense</span>
-                                        <span class="tech-badge">Firewall</span>
-                                        <span class="tech-badge">Securite</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète disponible prochainement</p>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <!-- PROJET 6 : Configuration VLANs -->
-                            <div class="realization-card">
-                                <div class="realization-header">
-                                    <h3><i class="fas fa-network-wired"></i> Configuration et segmentation réseau par VLANs</h3>
-                                    <p class="realization-context"><i class="fas fa-briefcase"></i> Stage — Mairie de Joué-lès-Tours | 2023</p>
-                                </div>
-                                <div class="realization-body">
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-tasks"></i> Contexte</h4>
-                                        <p>Lors de mon stage à la Mairie de Joué-lès-Tours, il m'a été demandé de configurer un VLAN sur l'infrastructure réseau existante afin de segmenter une partie du réseau.</p>
-                                    </div>
-
-                                    <div class="realization-section">
-                                        <h4><i class="fas fa-wrench"></i> Solutions mises en oeuvre</h4>
-                                        <ul>
-                                            <li>Prise en main de l'infrastructure réseau existante</li>
-                                            <li>Configuration du VLAN sur le switch managé (mode access sur les ports concernés)</li>
-                                            <li>Tests de connectivité pour vérifier le bon fonctionnement</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="benefit-box">
-                                        <h4><i class="fas fa-check-circle"></i> Apports pour le système d'information</h4>
-                                        <p><strong>Segmentation réseau :</strong> Isolation d'une partie du réseau conformément à la demande.<br>
-                                        <strong>Première expérience terrain :</strong> Mise en pratique de la configuration réseau sur équipement réel en environnement de production.</p>
-                                    </div>
-
-                                    <div class="tech-stack">
-                                        <span class="tech-badge">VLAN (802.1Q)</span>
-                                        <span class="tech-badge">Switch managé</span>
-                                        <span class="tech-badge">TCP/IP</span>
-                                    </div>
-
-                                    <div class="proof-section">
-                                        <h4><i class="fas fa-file-alt"></i> Documentation</h4>
-                                        <p style="color: #777; margin-bottom: 0.8rem;">Procédure complète de configuration disponible en téléchargement</p>
-                                        <a href="Procedure-VLAN.pdf" download class="pdf-download-btn">
-                                            <i class="fas fa-download"></i> Télécharger la procédure (PDF)
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <button class="carousel-btn next" onclick="moveCarousel(1)">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    </div><!-- /.carousel-nav -->
-                    <div class="carousel-counter">
-                        Projet <span id="carouselCurrent">1</span> / <span id="carouselTotal"></span>
-                    </div>
-                    <div class="carousel-indicators" id="carouselIndicators"></div>
-                </div>
-            </section>
-
-            <section id="parcours">
-                <h2><i class="fas fa-road"></i> Mon Parcours Professionnel</h2>
-
-                <div class="timeline">
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-henri-becquerel.png" alt="Lycee Henri Becquerel" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-microchip" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Baccalauréat Systèmes Numériques</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> 2021 – 2024</p>
-                                    <p class="tl-location"><i class="fas fa-school"></i> Lycée Henri Becquerel – Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">Réseaux RJ45</span>
-                                <span class="tl-tag">Linux</span>
-                                <span class="tl-tag">Arduino</span>
-                                <span class="tl-tag">Domotique</span>
-                                <span class="tl-tag">Dépannage PC</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-icv-informatique.png" alt="ICV Informatique" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-laptop" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Stagiaire Réparateur Informatique</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> Juin 2022</p>
-                                    <p class="tl-location"><i class="fas fa-map-marker-alt"></i> ICV Informatique – Joué-lès-Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">Diagnostic matériel</span>
-                                <span class="tl-tag">Réparation PC</span>
-                                <span class="tl-tag">Installation OS</span>
-                                <span class="tl-tag">Relation client</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-mairie-joue.png" alt="Mairie Joué" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-landmark" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Stagiaire Technicien Réseau</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> Janv. – Févr. 2023</p>
-                                    <p class="tl-location"><i class="fas fa-map-marker-alt"></i> Mairie de Joué-lès-Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">VLAN</span>
-                                <span class="tl-tag">Support N1/N2</span>
-                                <span class="tl-tag">Ticketing</span>
-                                <span class="tl-tag">Maintenance parc</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-mairie-joue.png" alt="Mairie Joué" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-landmark" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Stagiaire Technicien Réseau</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> Juin – Juil. 2023</p>
-                                    <p class="tl-location"><i class="fas fa-map-marker-alt"></i> Mairie de Joué-lès-Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">GLPI</span>
-                                <span class="tl-tag">Fibre optique (GBIC)</span>
-                                <span class="tl-tag">Équipements réseau</span>
-                                <span class="tl-tag">Support utilisateurs</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-faculte-medecine-tours.png" alt="Faculté Médecine" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-hospital" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Stagiaire Technicien Informatique</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> Nov. – Déc. 2023</p>
-                                    <p class="tl-location"><i class="fas fa-map-marker-alt"></i> Faculté de Médecine – Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">Maintenance réseau</span>
-                                <span class="tl-tag">Câblage</span>
-                                <span class="tl-tag">Support technique</span>
-                                <span class="tl-tag">Postes de travail</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-iscb.png" alt="ISCB" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-graduation-cap" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>BTS SIO option SISR</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> 2024 – 2026</p>
-                                    <p class="tl-location"><i class="fas fa-school"></i> ISCB – Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">Windows Server</span>
-                                <span class="tl-tag">Linux</span>
-                                <span class="tl-tag">Virtualisation</span>
-                                <span class="tl-tag">Sécurité SI</span>
-                                <span class="tl-tag">Gestion de projet</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <div class="timeline-top">
-                                <div class="timeline-logo">
-                                    <img src="logo-sncf.png" alt="SNCF" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <i class="fas fa-train" style="display:none;"></i>
-                                </div>
-                                <div class="timeline-meta">
-                                    <h3>Alternant Paramètreur Télésurveillance</h3>
-                                    <p class="tl-date"><i class="fas fa-calendar-alt"></i> Sept. 2024 – Juil. 2026</p>
-                                    <p class="tl-location"><i class="fas fa-map-marker-alt"></i> SNCF – Tours</p>
-                                </div>
-                            </div>
-                            <div class="timeline-tags">
-                                <span class="tl-tag">Télésurveillance</span>
-                                <span class="tl-tag">Signalisation ferroviaire</span>
-                                <span class="tl-tag">Paramétrage</span>
-                                <span class="tl-tag">Tests & Validation</span>
-                                <span class="tl-tag">Documentation technique</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-
-            <section id="competences">
-                <h2><i class="fas fa-star"></i> Compétences du Référentiel BTS SIO SISR</h2>
-                
-                <div class="competences-grid">
-                    <div class="competence-card">
-                        <h3><i class="fas fa-server"></i> Gerer le patrimoine informatique</h3>
-                        <ul class="competence-list">
-                            <li>
-                                Recenser et identifier les ressources numeriques
-                                <span class="competence-details">Inventaire materiel/logiciel, documentation technique</span>
-                            </li>
-                            <li>
-                                Exploiter des referentiels et normes
-                                <span class="competence-details">ISO 27001, bonnes pratiques</span>
-                            </li>
-                            <li>
-                                Mettre en place et verifier les niveaux d'habilitation
-                                <span class="competence-details">Gestion des droits Active Directory, Organisation des autorisations par profil</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="competence-card">
-                        <h3><i class="fas fa-network-wired"></i> Repondre aux incidents et aux demandes</h3>
-                        <ul class="competence-list">
-                            <li>
-                                Collecter, suivre et orienter des demandes
-                                <span class="competence-details">Ticketing, qualification et escalade des incidents</span>
-                            </li>
-                            <li>
-                                Traiter des demandes concernant les applications
-                                <span class="competence-details">Support applicatif, resolution problemes logiciels</span>
-                            </li>
-                            <li>
-                                Traiter des demandes concernant l'infrastructure
-                                <span class="competence-details">Resolution incidents reseau, serveurs, postes clients</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="competence-card">
-                        <h3><i class="fas fa-cogs"></i> Travailler en mode projet</h3>
-                        <ul class="competence-list">
-                            <li>
-                                Analyser les objectifs et besoins
-                                <span class="competence-details">Cahier des charges, expression des besoins</span>
-                            </li>
-                            <li>
-                                Planifier les activites
-                                <span class="competence-details">Gantt, methodes agiles, gestion des ressources</span>
-                            </li>
-                            <li>
-                                Evaluer les indicateurs de suivi
-                                <span class="competence-details">KPI, tableaux de bord, reporting projet</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="competence-card">
-                        <h3><i class="fas fa-tools"></i> Mettre a disposition des utilisateurs</h3>
-                        <ul class="competence-list">
-                            <li>
-                                Realiser les tests d'integration
-                                <span class="competence-details">Tests fonctionnels, validation avant production</span>
-                            </li>
-                            <li>
-                                Deployer un service
-                                <span class="competence-details">Deploiement serveurs, applications, GPO</span>
-                            </li>
-                            <li>
-                                Accompagner les utilisateurs
-                                <span class="competence-details">Formation, documentation utilisateur, support</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="competence-card">
-                        <h3><i class="fas fa-database"></i> Organiser son developpement professionnel</h3>
-                        <ul class="competence-list">
-                            <li>
-                                Mettre en place son environnement d'apprentissage
-                                <span class="competence-details">Veille technologique, lab personnel, autoformation</span>
-                            </li>
-                            <li>
-                                Mettre en oeuvre des outils collaboratifs
-                                <span class="competence-details">Teams, SharePoint, Git, documentation partagee</span>
-                            </li>
-                            <li>
-                                Developper son projet professionnel
-                                <span class="competence-details">Portfolio, réseau professionnel, certifications</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="certifications">
-                <h2><i class="fas fa-certificate"></i> Certifications et Formations</h2>
-                
-                <div class="certifications-grid">
-                    <div class="certification-card" onclick="openModal('certification-secnum.jpg')">
-                        <div class="certification-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>MOOC SecNumAcademie</h3>
-                        <p style="margin: 0.5rem 0;">ANSSI - Sensibilisation a la cybersecurite</p>
-                        <p class="certification-date">Obtenue en Juillet 2023</p>
-                        <span class="certification-badge">Cliquez pour voir le certificat</span>
-                    </div>
-
-                    <div class="certification-card" onclick="openModal('certification-avantdecliquer.jpg')">
-                        <div class="certification-icon">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <h3>Formation avantdecliquer.com</h3>
-                        <p style="margin: 0.5rem 0;">Prevention contre le phishing</p>
-                        <p class="certification-date">Obtenue en Juillet 2023</p>
-                        <span class="certification-badge">Cliquez pour voir le certificat</span>
-                    </div>
-
-                    <div class="certification-card" onclick="openModal('Mooc-Cnil-certifications.png')">
-                        <div class="certification-icon">
-                            <i class="fas fa-mouse-pointer"></i>
-                        </div>
-                        <h3>MOOC CNIL - RGPD</h3>
-                        <p style="margin: 0.5rem 0;">L'atelier RGPD - Protection des donnees</p>
-                        <p class="certification-date">Obtenue le 23/02/2026</p>
-                        <span class="certification-badge">Cliquez pour voir le certificat</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact">
-                <h2><i class="fas fa-envelope"></i> Me Contacter</h2>
-
-                <div class="contact-clean">
-                    <p class="contact-intro">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p>
-                    <div class="contact-items">
-                        <a href="mailto:simonetchart37@gmail.com" class="contact-tile">
-                            <div class="contact-tile-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-tile-text">
-                                <span>Email</span>
-                                <strong>simonetchart37@gmail.com</strong>
-                            </div>
-                        </a>
-                        <a href="https://github.com/simon-etc" target="_blank" class="contact-tile">
-                            <div class="contact-tile-icon"><i class="fab fa-github"></i></div>
-                            <div class="contact-tile-text">
-                                <span>GitHub</span>
-                                <strong>github.com/simon-etc</strong>
-                            </div>
-                        </a>
-                        <div class="contact-tile">
-                            <div class="contact-tile-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact-tile-text">
-                                <span>Localisation</span>
-                                <strong>Tours, France</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">&copy; 2026 Simon ETCHART - Portfolio Professionnel</p>
-            <p style="opacity: 0.8;">Paramètreur Télésurveillance | BTS SIO SISR – ISCB Tours | Alternance SNCF</p>
-            <div style="margin-top: 1rem;">
-                <a href="https://github.com/simon-etc" target="_blank" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-                <a href="mailto:simonetchart37@gmail.com" style="margin: 0 1rem; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
-            </div>
-        </footer>
-    </div>
-
-    <div id="certificationModal" class="modal" onclick="closeModal()">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+    <!-- NAV -->
+    <nav class="nav" id="nav"><div class="nav-inner"><a href="#" class="nav-logo">Simon<span>.</span></a><ul class="nav-links" id="navLinks"><li><a href="#presentation">Présentation</a></li><li><a href="#entreprise">Entreprise</a></li><li><a href="#realisations">Réalisations</a></li><li><a href="#parcours">Parcours</a></li><li><a href="#competences">Compétences</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#contact">Contact</a></li></ul><button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero"><div class="hero-grid"></div><div class="hero-content"><div class="hero-badge">BTS SIO — SISR</div><h1>Simon <span class="accent">Etchart</span></h1><p class="hero-subtitle">Technicien Systèmes & Réseaux | Alternance SNCF</p><a href="#realisations" class="hero-cta">Voir mes réalisations <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div><div class="hero-scroll"><span></span></div></section>
+
+    <!-- PRESENTATION -->
+    <section class="section" id="presentation"><div class="section-inner"><div class="section-header reveal"><span class="section-label">À propos</span><h2 class="section-title">Présentation</h2><div class="section-divider"></div></div><div class="presentation-card reveal"><p>Je m'appelle <strong>Simon ETCHART</strong>, actuellement en <strong>BTS SIO option SISR</strong> en alternance à l'ISCB de Tours. Je travaille au sein de la <strong>SNCF</strong> en tant que Technicien Systèmes et Réseaux depuis septembre 2024, où j'interviens sur le paramétrage de systèmes de télésurveillance dans les équipements de signalisation ferroviaire.</p><p>Mon parcours a débuté avec un <strong>Bac Systèmes Numériques</strong> au lycée Henri Becquerel, complété par plusieurs stages en entreprise (ICV Informatique, Mairie de Joué-lès-Tours, Faculté de Médecine de Tours). Passionné par la cybersécurité et les infrastructures, je prépare activement plusieurs certifications professionnelles.</p><div class="downloads-row"><a href="CV-Simon-ETCHART.pdf" download class="btn-dl"><i class="fas fa-file-pdf"></i> Télécharger mon CV</a><a href="Tableau-Competences.pdf" download class="btn-dl"><i class="fas fa-table"></i> Tableau de compétences</a></div></div></div></section>
+
+    <!-- ENTREPRISE -->
+    <section class="section alt-bg" id="entreprise"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Entreprise</span><h2 class="section-title">SNCF</h2><div class="section-divider"></div></div><div class="company-card reveal"><div class="company-header"><div class="company-logo"><img src="logo-sncf.png" alt="Logo SNCF" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-train" style="display:none;"></i></div><div class="company-info"><h3>SNCF — Société Nationale des Chemins de fer Français</h3><p><i class="fas fa-map-marker-alt"></i> France &nbsp;|&nbsp; <i class="fas fa-users"></i> +150 000 collaborateurs &nbsp;|&nbsp; <i class="fas fa-industry"></i> Transport ferroviaire</p></div></div><div class="company-description"><h4>Présentation de l'entreprise</h4><p>La SNCF est l'entreprise ferroviaire publique française, leader européen du transport de voyageurs et de marchandises. Premier réseau ferroviaire d'Europe avec plus de 30 000 km de lignes, la SNCF assure quotidiennement le transport de millions de voyageurs à travers ses services TGV, Intercités, TER et Transilien.</p><p style="margin-top:0.75rem">Au-delà du transport, la SNCF gère l'ensemble des infrastructures ferroviaires nationales et développe des solutions de mobilité innovantes.</p></div><p class="missions-title">Missions principales de la SNCF</p><div class="missions-grid"><div class="mission-item"><h4><i class="fas fa-train"></i> Transport de voyageurs</h4><p>15 millions de voyageurs transportés quotidiennement</p></div><div class="mission-item"><h4><i class="fas fa-box"></i> Fret ferroviaire</h4><p>Transport de marchandises national et européen</p></div><div class="mission-item"><h4><i class="fas fa-wrench"></i> Maintenance infrastructure</h4><p>Entretien de 30 000 km de voies ferrées</p></div><div class="mission-item"><h4><i class="fas fa-lightbulb"></i> Innovation mobilité</h4><p>Solutions digitales et mobilité durable</p></div></div><p class="missions-title" style="margin-top:2rem">Mes missions en alternance</p><div class="missions-grid"><div class="mission-item"><h4><i class="fas fa-broadcast-tower"></i> Paramétrage Télésurveillance</h4><p>Configuration des systèmes de télésurveillance intégrés aux équipements de signalisation ferroviaire</p></div><div class="mission-item"><h4><i class="fas fa-train"></i> Signalisation Ferroviaire</h4><p>Intervention sur les systèmes de signalisation : diagnostic, paramétrage et validation</p></div><div class="mission-item"><h4><i class="fas fa-clipboard-check"></i> Tests & Validation</h4><p>Tests fonctionnels et validation des configurations avant mise en production</p></div><div class="mission-item"><h4><i class="fas fa-file-alt"></i> Documentation Technique</h4><p>Rédaction de procédures d'exploitation et fiches techniques</p></div></div></div></div></section>
+
+    <!-- REALISATIONS CAROUSEL -->
+    <section class="section" id="realisations"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Projets</span><h2 class="section-title">Mes Réalisations et Projets</h2><div class="section-divider"></div></div><div class="carousel-container reveal"><div class="carousel-viewport"><div class="carousel-track" id="carouselTrack">
+
+        <!-- P1: Active Directory -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-server"></i> Mise en place Active Directory avec contrôle d'accès</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Décembre 2024</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports pour le SI</h4><p><strong>Centralisation :</strong> Contrôle unifié des utilisateurs et groupes.<br><strong>Sécurité renforcée :</strong> Politiques automatiques selon les profils.<br><strong>Scalabilité :</strong> Infrastructure évolutive.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/windows11/windows11-original.svg" alt="Windows"> Windows Server 2022</span><span class="tech-badge"><i class="fas fa-sitemap" style="color:#0078d4"></i> Active Directory</span><span class="tech-badge"><i class="fas fa-shield-alt" style="color:#0078d4"></i> GPO</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/powershell/powershell-original.svg" alt="PS"> PowerShell</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Mise en place d'un environnement Active Directory pour gérer les utilisateurs et appliquer des politiques de sécurité différenciées.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Installation et configuration d'un serveur Windows Server 2022</li><li>Déploiement du rôle AD DS</li><li>Création de comptes utilisateurs avec niveaux d'accès différents</li><li>Configuration d'un groupe de sécurité</li><li>Mise en place de GPO pour les politiques de sécurité</li><li>Tests de connexion et vérification des restrictions</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure complète détaillée disponible</p><a href="Procedure-Active-Directory.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Télécharger (PDF)</a></div>
+        </div></div></div>
+
+        <!-- P2: Portfolio -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-globe"></i> Création d'un portfolio avec GitHub Pages</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS | Janvier 2025</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports</h4><p><strong>Visibilité :</strong> Présence pro accessible 24/7.<br><strong>Démonstration :</strong> Preuve de maîtrise web et versioning.<br><strong>Évolution :</strong> Portfolio facilement modifiable.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/html5/html5-original.svg" alt="HTML5"> HTML5</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/css3/css3-original.svg" alt="CSS3"> CSS3</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/javascript/javascript-original.svg" alt="JS"> JavaScript</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="Git"> Git</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/github/github-original.svg" alt="GH"> GitHub Pages</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Nécessité de créer une vitrine professionnelle pour présenter parcours et réalisations BTS SIO SISR.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Développement d'un site responsive en HTML5/CSS3</li><li>Repository GitHub pour le versioning</li><li>GitHub Pages pour l'hébergement</li><li>Design professionnel avec animations CSS</li><li>Navigation smooth scroll et modal</li><li>Optimisation responsive multi-devices</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure de création et déploiement disponible</p><a href="Procedure-Creation-Portfolio.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Télécharger (PDF)</a></div>
+        </div></div></div>
+
+        <!-- P3: LAMP -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-layer-group"></i> Installation d'un serveur LAMP sécurisé</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports pour le SI</h4><p><strong>Hébergement interne :</strong> Serveur web opérationnel.<br><strong>Sécurité :</strong> Communications chiffrées, système durci.<br><strong>Performances :</strong> Stack optimisé.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/linux/linux-original.svg" alt="Linux"> Linux</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/apache/apache-original.svg" alt="Apache"> Apache</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="MySQL"> MySQL</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg" alt="PHP"> PHP</span><span class="tech-badge"><i class="fas fa-lock" style="color:#e8a317"></i> SSL/TLS</span><span class="tech-badge"><i class="fas fa-shield-alt" style="color:#dd4814"></i> UFW</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Déploiement d'un serveur web LAMP dans un environnement sécurisé pour héberger des applications web internes.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Installation de Linux (Debian/Ubuntu Server)</li><li>Sécurisation du serveur Apache</li><li>Configuration de MySQL/MariaDB</li><li>Configuration de PHP et modules</li><li>Certificat SSL/TLS (HTTPS)</li><li>Pare-feu et durcissement système</li><li>Tests de sécurité et validation</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure complète disponible</p><a href="Procedure-LAMP.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Télécharger (PDF)</a></div>
+        </div></div></div>
+
+        <!-- P4: LDAP/Samba -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-address-book"></i> Authentification centralisée : LDAP, OpenLDAP et Samba AD</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports pour le SI</h4><p><strong>Centralisation :</strong> Annuaire unique pour tous les utilisateurs.<br><strong>Interopérabilité :</strong> Environnement hétérogène unifié via Samba AD.<br><strong>Sécurité :</strong> Politiques de mots de passe centralisées.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><i class="fas fa-address-book" style="color:#5b9bd5"></i> LDAP</span><span class="tech-badge"><i class="fas fa-folder-tree" style="color:#5b9bd5"></i> OpenLDAP</span><span class="tech-badge"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Samba_Logo_2010.svg/64px-Samba_Logo_2010.svg.png" alt="Samba" onerror="this.style.display='none'"> Samba AD</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/linux/linux-original.svg" alt="Linux"> Linux</span><span class="tech-badge"><i class="fas fa-key" style="color:#e8a317"></i> Kerberos</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Mise en place d'une solution d'authentification centralisée sous Linux via LDAP, OpenLDAP et Samba AD pour unifier la gestion des identités.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Installation d'OpenLDAP sur serveur Linux</li><li>Structure de l'annuaire (DIT) : OU, CN, groupes</li><li>Configuration de PAM et NSS</li><li>Déploiement Samba en mode AD Domain Controller</li><li>Intégration clients Linux et Windows</li><li>Gestion des ACL et politiques de mot de passe</li><li>Tests d'authentification cross-plateforme</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure complète disponible</p><a href="Procedure-LDAP.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Télécharger (PDF)</a></div>
+        </div></div></div>
+
+        <!-- P5: Pare-feu -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-shield-alt"></i> Sécurisation infrastructure avec pare-feu</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports pour le SI</h4><p><strong>Protection périmétrique :</strong> Filtrage avancé du trafic.<br><strong>Visibilité :</strong> Logs centralisés pour analyse d'intrusions.<br><strong>Conformité :</strong> Bonnes pratiques de sécurité.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><i class="fas fa-fire" style="color:#c03030"></i> pfSense</span><span class="tech-badge"><i class="fas fa-shield-alt" style="color:#4a90d9"></i> Firewall</span><span class="tech-badge"><i class="fas fa-lock" style="color:#5a9e6f"></i> Sécurité</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Protection d'un réseau contre les menaces externes et mise en place de règles de filtrage avancées.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Installation et configuration de pfSense</li><li>Définition de règles de filtrage par zone</li><li>Mise en place de la journalisation</li><li>Tests de pénétration et validation</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure disponible prochainement</p></div>
+        </div></div></div>
+
+        <!-- P6: VLAN -->
+        <div class="carousel-slide"><div class="project-card"><div class="project-header"><h3><i class="fas fa-network-wired"></i> Configuration VLAN</h3><p class="project-context"><i class="fas fa-graduation-cap"></i> Projet BTS</p></div><div class="project-body">
+            <div class="benefit-box"><h4><i class="fas fa-check-circle"></i> Apports pour le SI</h4><p><strong>Segmentation :</strong> Isolation du trafic par service.<br><strong>Sécurité :</strong> Limitation des broadcasts.<br><strong>Performance :</strong> Optimisation bande passante.</p></div>
+            <div class="tech-stack"><span class="tech-badge"><i class="fas fa-project-diagram" style="color:#1ba0d7"></i> VLAN</span><span class="tech-badge"><i class="fas fa-server" style="color:#555"></i> Switch manageable</span><span class="tech-badge"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cisco/cisco-original.svg" alt="Cisco" onerror="this.style.display='none'"> Cisco IOS</span></div>
+            <div class="project-section"><h4><i class="fas fa-tasks"></i> Contexte</h4><p>Configuration de VLANs sur un switch manageable pour segmenter le trafic réseau en environnement simulé.</p></div>
+            <div class="project-section"><h4><i class="fas fa-wrench"></i> Solutions mises en œuvre</h4><ul><li>Création et configuration de VLANs</li><li>Attribution des ports aux VLANs</li><li>Configuration du trunk entre switches</li><li>Tests de connectivité et validation</li></ul></div>
+            <div class="proof-section"><h4><i class="fas fa-file-alt"></i> Documentation</h4><p>Procédure complète disponible</p><a href="Procedure-VLAN.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Télécharger (PDF)</a></div>
+        </div></div></div>
+
+    </div></div>
+    <div class="carousel-controls"><button class="carousel-btn" id="prevBtn" aria-label="Précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><div class="carousel-dots" id="carouselDots"></div><span class="carousel-counter"><span class="current" id="currentSlide">1</span> / <span id="totalSlides">6</span></span><button class="carousel-btn" id="nextBtn" aria-label="Suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button></div>
+    </div></div></section>
+
+    <!-- PARCOURS TIMELINE -->
+    <section class="section alt-bg" id="parcours"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Expérience</span><h2 class="section-title">Mon Parcours Professionnel</h2><div class="section-divider"></div></div><div class="timeline reveal">
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-henri-becquerel.png" alt="Lycée Henri Becquerel" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-microchip" style="display:none"></i></div><div class="timeline-meta"><h3>Baccalauréat Systèmes Numériques</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> 2021 – 2024</p><p class="tl-location"><i class="fas fa-school"></i> Lycée Henri Becquerel – Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">Réseaux RJ45</span><span class="tl-tag">Linux</span><span class="tl-tag">Arduino</span><span class="tl-tag">Domotique</span><span class="tl-tag">Dépannage PC</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-icv-informatique.png" alt="ICV" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-laptop" style="display:none"></i></div><div class="timeline-meta"><h3>Stagiaire Réparateur Informatique</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> Juin 2022</p><p class="tl-location"><i class="fas fa-map-marker-alt"></i> ICV Informatique – Joué-lès-Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">Diagnostic matériel</span><span class="tl-tag">Réparation PC</span><span class="tl-tag">Installation OS</span><span class="tl-tag">Relation client</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-mairie-joue.png" alt="Mairie" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-landmark" style="display:none"></i></div><div class="timeline-meta"><h3>Stagiaire Technicien Réseau</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> Janv. – Févr. 2023</p><p class="tl-location"><i class="fas fa-map-marker-alt"></i> Mairie de Joué-lès-Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">VLAN</span><span class="tl-tag">Support N1/N2</span><span class="tl-tag">Ticketing</span><span class="tl-tag">Maintenance parc</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-mairie-joue.png" alt="Mairie" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-landmark" style="display:none"></i></div><div class="timeline-meta"><h3>Stagiaire Technicien Réseau</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> Juin – Juil. 2023</p><p class="tl-location"><i class="fas fa-map-marker-alt"></i> Mairie de Joué-lès-Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">GLPI</span><span class="tl-tag">Fibre optique (GBIC)</span><span class="tl-tag">Équipements réseau</span><span class="tl-tag">Support utilisateurs</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-faculte-medecine-tours.png" alt="Fac Médecine" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-hospital" style="display:none"></i></div><div class="timeline-meta"><h3>Stagiaire Technicien Informatique</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> Nov. – Déc. 2023</p><p class="tl-location"><i class="fas fa-map-marker-alt"></i> Faculté de Médecine – Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">Maintenance réseau</span><span class="tl-tag">Câblage</span><span class="tl-tag">Support technique</span><span class="tl-tag">Postes de travail</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-iscb.png" alt="ISCB" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-graduation-cap" style="display:none"></i></div><div class="timeline-meta"><h3>BTS SIO option SISR</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> 2024 – 2026</p><p class="tl-location"><i class="fas fa-school"></i> ISCB – Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">Windows Server</span><span class="tl-tag">Linux</span><span class="tl-tag">Virtualisation</span><span class="tl-tag">Sécurité SI</span><span class="tl-tag">Gestion de projet</span></div></div></div>
+        <div class="timeline-item"><div class="timeline-card"><div class="timeline-top"><div class="timeline-logo"><img src="logo-sncf.png" alt="SNCF" onerror="this.style.display='none'; this.parentElement.querySelector('i').style.display='flex'"><i class="fas fa-train" style="display:none"></i></div><div class="timeline-meta"><h3>Alternant Paramétreur Télésurveillance</h3><p class="tl-date"><i class="fas fa-calendar-alt"></i> Sept. 2024 – Juil. 2026</p><p class="tl-location"><i class="fas fa-map-marker-alt"></i> SNCF – Tours</p></div></div><div class="timeline-tags"><span class="tl-tag">Télésurveillance</span><span class="tl-tag">Signalisation ferroviaire</span><span class="tl-tag">Paramétrage</span><span class="tl-tag">Tests & Validation</span><span class="tl-tag">Documentation technique</span></div></div></div>
+    </div></div></section>
+
+    <!-- COMPETENCES AVEC LOGOS -->
+    <section class="section" id="competences"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Compétences</span><h2 class="section-title">Savoir-faire techniques</h2><div class="section-divider"></div></div>
+    <div class="competences-grid">
+        <div class="competence-card reveal"><h3><i class="fas fa-desktop"></i> Systèmes</h3><div class="skill-logos">
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/windows11/windows11-original.svg" alt="Windows"><span>Windows Server</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/debian/debian-original.svg" alt="Debian"><span>Debian</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/ubuntu/ubuntu-original.svg" alt="Ubuntu"><span>Ubuntu</span></div>
+            <div class="skill-logo-item"><i class="fas fa-sitemap" style="color:#0078d4"></i><span>Active Directory</span></div>
+            <div class="skill-logo-item"><i class="fas fa-shield-alt" style="color:#0078d4"></i><span>GPO</span></div>
+        </div></div>
+
+        <div class="competence-card reveal"><h3><i class="fas fa-network-wired"></i> Réseaux</h3><div class="skill-logos">
+            <div class="skill-logo-item"><i class="fas fa-globe" style="color:#1ba0d7"></i><span>TCP/IP</span></div>
+            <div class="skill-logo-item"><i class="fas fa-project-diagram" style="color:#1ba0d7"></i><span>VLAN</span></div>
+            <div class="skill-logo-item"><i class="fas fa-route" style="color:#e8a317"></i><span>Routage</span></div>
+            <div class="skill-logo-item"><i class="fas fa-random" style="color:#5a9e6f"></i><span>Switching</span></div>
+            <div class="skill-logo-item"><i class="fas fa-fire" style="color:#c03030"></i><span>Pare-feu</span></div>
+            <div class="skill-logo-item"><i class="fas fa-lock" style="color:#4a6fa5"></i><span>VPN</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/cisco/cisco-original.svg" alt="Cisco" onerror="this.outerHTML='<i class=\'fas fa-ethernet\' style=\'color:#1ba0d7;font-size:32px\'></i>'"><span>Cisco</span></div>
+        </div></div>
+
+        <div class="competence-card reveal"><h3><i class="fas fa-shield-alt"></i> Sécurité</h3><div class="skill-logos">
+            <div class="skill-logo-item"><i class="fas fa-fire" style="color:#c03030"></i><span>pfSense</span></div>
+            <div class="skill-logo-item"><i class="fas fa-certificate" style="color:#e8a317"></i><span>SSL/TLS</span></div>
+            <div class="skill-logo-item"><i class="fas fa-database" style="color:#5a9e6f"></i><span>Sauvegarde</span></div>
+            <div class="skill-logo-item"><i class="fas fa-user-shield" style="color:#4a6fa5"></i><span>Politique sécu.</span></div>
+        </div></div>
+
+        <div class="competence-card reveal"><h3><i class="fas fa-cubes"></i> Virtualisation</h3><div class="skill-logos">
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/virtualbox/virtualbox-original.svg" alt="VBox" onerror="this.outerHTML='<i class=\'fas fa-cube\' style=\'color:#183a61;font-size:32px\'></i>'"><span>VirtualBox</span></div>
+            <div class="skill-logo-item"><i class="fas fa-server" style="color:#607078"></i><span>VMware</span></div>
+            <div class="skill-logo-item"><i class="fas fa-cubes" style="color:#e57000"></i><span>Proxmox</span></div>
+        </div></div>
+
+        <div class="competence-card reveal"><h3><i class="fas fa-terminal"></i> Scripting & Outils</h3><div class="skill-logos">
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/bash/bash-original.svg" alt="Bash"><span>Bash</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/powershell/powershell-original.svg" alt="PS"><span>PowerShell</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/git/git-original.svg" alt="Git"><span>Git</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/github/github-original.svg" alt="GitHub"><span>GitHub</span></div>
+            <div class="skill-logo-item"><i class="fas fa-headset" style="color:#4a90d9"></i><span>GLPI</span></div>
+        </div></div>
+
+        <div class="competence-card reveal"><h3><i class="fas fa-server"></i> Services</h3><div class="skill-logos">
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/apache/apache-original.svg" alt="Apache"><span>Apache</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/mysql/mysql-original.svg" alt="MySQL"><span>MySQL</span></div>
+            <div class="skill-logo-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg" alt="PHP"><span>PHP</span></div>
+            <div class="skill-logo-item"><i class="fas fa-address-book" style="color:#5b9bd5"></i><span>LDAP</span></div>
+            <div class="skill-logo-item"><i class="fas fa-folder-tree" style="color:#5b9bd5"></i><span>OpenLDAP</span></div>
+            <div class="skill-logo-item"><i class="fas fa-network-wired" style="color:#e57000"></i><span>Samba AD</span></div>
+        </div></div>
+    </div></div></section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section alt-bg" id="certifications"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Certifications</span><h2 class="section-title">Certifications et Formations</h2><div class="section-divider"></div></div><div class="certifications-grid">
+        <div class="cert-card reveal" onclick="openModal('certification-secnum.jpg')"><div class="cert-icon-wrapper"><i class="fas fa-shield-alt"></i></div><h3>MOOC SecNumAcadémie</h3><p class="cert-desc">ANSSI — Sensibilisation cybersécurité</p><p class="cert-date">Obtenue en Juillet 2023</p><span class="cert-badge">Voir le certificat</span></div>
+        <div class="cert-card reveal" onclick="openModal('certification-avantdecliquer.jpg')"><div class="cert-icon-wrapper"><i class="fas fa-mouse-pointer"></i></div><h3>Formation avantdecliquer.com</h3><p class="cert-desc">Prévention contre le phishing</p><p class="cert-date">Obtenue en Juillet 2023</p><span class="cert-badge">Voir le certificat</span></div>
+        <div class="cert-card reveal"><div class="cert-icon-wrapper"><i class="fas fa-award"></i></div><h3>PIX — Certification Numérique</h3><p class="cert-desc">Certification compétences numériques</p><p class="cert-date">En cours</p></div>
+        <div class="cert-card reveal" onclick="openModal('Mooc-Cnil-certifications.png')"><div class="cert-icon-wrapper"><i class="fas fa-user-shield"></i></div><h3>MOOC CNIL — RGPD</h3><p class="cert-desc">L'atelier RGPD — Protection des données</p><p class="cert-date">Obtenue le 23/03/2026</p><span class="cert-badge">Voir le certificat</span></div>
+    </div></div></section>
+
+    <!-- CONTACT -->
+    <section class="section contact-bg" id="contact"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Contact</span><h2 class="section-title">Me Contacter</h2><div class="section-divider"></div></div><p class="contact-intro reveal">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p><div class="contact-grid"><a href="mailto:simon.etchart37@gmail.com" class="contact-item reveal"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label-text">E-mail</div><div class="contact-value">simon.etchart37@gmail.com</div></div></a><a href="https://github.com/simon-etc" target="_blank" class="contact-item reveal"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label-text">GitHub</div><div class="contact-value">github.com/simon-etc</div></div></a><div class="contact-item reveal"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label-text">Localisation</div><div class="contact-value">Tours, France</div></div></div></div></div></section>
+
+    <!-- FOOTER -->
+    <footer class="footer"><p>&copy; 2026 Simon ETCHART — Portfolio Professionnel</p><p style="margin-top:0.3rem;font-size:0.78rem;color:rgba(255,255,255,0.25)">Technicien Systèmes et Réseaux | BTS SIO SISR — ISCB Tours | Alternance SNCF</p><div class="footer-links"><a href="https://github.com/simon-etc" target="_blank"><i class="fab fa-github"></i></a><a href="mailto:simon.etchart37@gmail.com"><i class="fas fa-envelope"></i></a></div></footer>
+
+    <!-- MODAL --><div id="certificationModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImage"></div>
 
     <script>
-        // Navigation smooth scroll
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Active nav highlight
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            let current = '';
-            sections.forEach(section => {
-                if (scrollY >= (section.offsetTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Modal
-        function openModal(imagePath) {
-            const modal = document.getElementById('certificationModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = 'block';
-            modalImg.src = imagePath;
-        }
-
-        function closeModal() {
-            document.getElementById('certificationModal').style.display = 'none';
-        }
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') closeModal();
-        });
-
-        // Carousel
-        let currentSlide = 0;
-        const track = document.getElementById('carouselTrack');
-        const cards = document.querySelectorAll('.carousel-track .realization-card');
-        const totalSlides = cards.length;
-
-        const indicatorsContainer = document.getElementById('carouselIndicators');
-        for (let i = 0; i < totalSlides; i++) {
-            const indicator = document.createElement('div');
-            indicator.className = 'carousel-indicator' + (i === 0 ? ' active' : '');
-            indicator.onclick = () => goToSlide(i);
-            indicatorsContainer.appendChild(indicator);
-        }
-
-        document.getElementById('carouselTotal').textContent = totalSlides;
-
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            document.querySelectorAll('.carousel-indicator').forEach((ind, i) => {
-                ind.classList.toggle('active', i === currentSlide);
-            });
-            document.getElementById('carouselCurrent').textContent = currentSlide + 1;
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        function moveCarousel(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            else if (currentSlide >= totalSlides) currentSlide = 0;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
+        const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
+        const hamburger=document.getElementById('hamburger');const navLinks=document.getElementById('navLinks');hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>navLinks.classList.remove('open')));
+        window.addEventListener('scroll',()=>{const sections=document.querySelectorAll('section[id]');const links=document.querySelectorAll('.nav-links a');let cur='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur))});
+        const track=document.getElementById('carouselTrack');const slides=track.querySelectorAll('.carousel-slide');const prevBtn=document.getElementById('prevBtn');const nextBtn=document.getElementById('nextBtn');const currentDisplay=document.getElementById('currentSlide');const dotsContainer=document.getElementById('carouselDots');let current=0;const total=slides.length;
+        for(let i=0;i<total;i++){const dot=document.createElement('button');dot.classList.add('carousel-dot');if(i===0)dot.classList.add('active');dot.setAttribute('aria-label','Projet '+(i+1));dot.addEventListener('click',()=>goTo(i));dotsContainer.appendChild(dot)}
+        function goTo(index){current=index;track.style.transform='translateX(-'+current*100+'%)';currentDisplay.textContent=current+1;document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current))}
+        prevBtn.addEventListener('click',()=>goTo((current-1+total)%total));nextBtn.addEventListener('click',()=>goTo((current+1)%total));
+        let touchStartX=0;track.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX},{passive:true});track.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].screenX;if(Math.abs(diff)>50){diff>0?goTo((current+1)%total):goTo((current-1+total)%total)}},{passive:true});
+        document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')goTo((current-1+total)%total);if(e.key==='ArrowRight')goTo((current+1)%total)});
+        function openModal(p){document.getElementById('certificationModal').style.display='block';document.getElementById('modalImage').src=p;document.body.style.overflow='hidden'}
+        function closeModal(){document.getElementById('certificationModal').style.display='none';document.body.style.overflow=''}
+        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+        const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(entries=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*60);observer.unobserve(entry.target)}})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});reveals.forEach(el=>observer.observe(el));
     </script>
 </body>
 </html>
