@@ -185,14 +185,14 @@
         </div>
     </div></div></section>
 
-    <section class="section" id="contact"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Contact</span><h2 class="section-title">Me Contacter</h2><div class="section-divider"></div></div><p class="contact-intro reveal">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p><div class="contact-grid"><a href="mailto:simon.etchart37@gmail.com" class="contact-item reveal"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label-text">E-mail</div><div class="contact-value">simon.etchart37@gmail.com</div></div></a><a href="https://github.com/simon-etc" class="contact-item reveal"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label-text">GitHub</div><div class="contact-value">github.com/simon-etc</div></div></a><div class="contact-item reveal"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label-text">Localisation</div><div class="contact-value">Tours, France</div></div></div></div></div></section>
+    <section class="section" id="contact"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Contact</span><h2 class="section-title">Me Contacter</h2><div class="section-divider"></div></div><p class="contact-intro reveal">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p><div class="contact-grid"><a href="/cdn-cgi/l/email-protection#b3c0dadedcdd9dd6c7d0dbd2c1c78084f3d4ded2dadf9dd0dcde" class="contact-item reveal"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label-text">E-mail</div><div class="contact-value"><span class="__cf_email__" data-cfemail="74071d191b1a5a1100171c1506004743341319151d185a171b19">[email&#160;protected]</span></div></div></a><a href="https://github.com/simon-etc" class="contact-item reveal"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label-text">GitHub</div><div class="contact-value">github.com/simon-etc</div></div></a><div class="contact-item reveal"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label-text">Localisation</div><div class="contact-value">Tours, France</div></div></div></div></div></section>
 
-    <footer class="footer"><p>&copy; 2026 Simon ETCHART — Portfolio BTS SIO SISR</p><p class="ia-note">Mise en forme réalisée avec l'aide de l'IA (Claude) — Contenu et projets personnels</p><div class="footer-links"><a href="https://github.com/simon-etc"><i class="fab fa-github"></i></a><a href="mailto:simon.etchart37@gmail.com"><i class="fas fa-envelope"></i></a></div></footer>
+    <footer class="footer"><p>&copy; 2026 Simon ETCHART — Portfolio BTS SIO SISR</p><p class="ia-note">Mise en forme réalisée avec l'aide de l'IA (Claude) — Contenu et projets personnels</p><div class="footer-links"><a href="https://github.com/simon-etc"><i class="fab fa-github"></i></a><a href="/cdn-cgi/l/email-protection#fd8e94909293d398899e959c8f89cecabd9a909c9491d39e9290"><i class="fas fa-envelope"></i></a></div></footer>
 
     <div id="certificationModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImage"></div>
     <div id="pdfModal" class="modal" onclick="if(event.target===this)closePdf()"><span class="close-modal" onclick="closePdf()">&times;</span><iframe id="pdfFrame"></iframe></div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
         const hamburger=document.getElementById('hamburger');const navLinks=document.getElementById('navLinks');hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>navLinks.classList.remove('open')));
         window.addEventListener('scroll',()=>{const sections=document.querySelectorAll('section[id]');const links=document.querySelectorAll('.nav-links a');let cur='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur))});
@@ -208,7 +208,4 @@
         function openPdf(url){document.getElementById('pdfModal').style.display='block';document.getElementById('pdfFrame').src=url;document.body.style.overflow='hidden'}
         function closePdf(){document.getElementById('pdfModal').style.display='none';document.getElementById('pdfFrame').src='';document.body.style.overflow=''}
         document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closePdf()}});
-        const reveals=document.querySelectorAll('.reveal');const observer=new IntersectionObserver(entries=>{entries.forEach((entry,i)=>{if(entry.isIntersecting){setTimeout(()=>entry.target.classList.add('visible'),i*60);observer.unobserve(entry.target)}})},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});reveals.forEach(el=>observer.observe(el));
-    </script>
-</body>
-</html>
+        const reveals=document.querySelectorAll('.reveal');const observer=ne
