@@ -191,28 +191,115 @@
         </div>
     </div></div></section>
 
-    <section class="section" id="contact"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Contact</span><h2 class="section-title">Me Contacter</h2><div class="section-divider"></div></div><p class="contact-intro reveal">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p><div class="contact-grid"><a href="/cdn-cgi/l/email-protection#592a30343637773c2d3a31382b2d6a6e193e34383035773a3634" class="contact-item reveal"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label-text">E-mail</div><div class="contact-value"><span class="__cf_email__" data-cfemail="7e0d17131110501b0a1d161f0c0a4d493e19131f1712501d1113">[email&#160;protected]</span></div></div></a><a href="https://github.com/simon-etc" class="contact-item reveal"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label-text">GitHub</div><div class="contact-value">github.com/simon-etc</div></div></a><div class="contact-item reveal"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label-text">Localisation</div><div class="contact-value">Tours, France</div></div></div></div></div></section>
+    <section class="section" id="contact"><div class="section-inner"><div class="section-header reveal"><span class="section-label">Contact</span><h2 class="section-title">Me Contacter</h2><div class="section-divider"></div></div><p class="contact-intro reveal">Actuellement en alternance, je reste ouvert aux opportunités professionnelles.</p><div class="contact-grid"><a href="mailto:simon.etchart37@gmail.com" class="contact-item reveal"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><div class="contact-label-text">E-mail</div><div class="contact-value">simon.etchart37@gmail.com</div></div></a><a href="https://github.com/simon-etc" class="contact-item reveal"><div class="contact-icon"><i class="fab fa-github"></i></div><div><div class="contact-label-text">GitHub</div><div class="contact-value">github.com/simon-etc</div></div></a><div class="contact-item reveal"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="contact-label-text">Localisation</div><div class="contact-value">Tours, France</div></div></div></div></div></section>
 
-    <footer class="footer"><p>&copy; 2026 Simon ETCHART — Portfolio BTS SIO SISR</p><p class="ia-note">Mise en forme réalisée avec l'aide de l'IA (Claude) — Contenu et projets personnels</p><div class="footer-links"><a href="https://github.com/simon-etc"><i class="fab fa-github"></i></a><a href="/cdn-cgi/l/email-protection#c7b4aeaaa8a9e9a2b3a4afa6b5b3f4f087a0aaa6aeabe9a4a8aa"><i class="fas fa-envelope"></i></a></div></footer>
+    <footer class="footer"><p>&copy; 2026 Simon ETCHART — Portfolio BTS SIO SISR</p><p class="ia-note">Mise en forme réalisée avec l'aide de l'IA (Claude) — Contenu et projets personnels</p><div class="footer-links"><a href="https://github.com/simon-etc"><i class="fab fa-github"></i></a><a href="mailto:simon.etchart37@gmail.com"><i class="fas fa-envelope"></i></a></div></footer>
 
     <div id="certificationModal" class="modal" onclick="closeModal()"><span class="close-modal">&times;</span><img class="modal-content" id="modalImage"></div>
     <div id="pdfModal" class="modal" onclick="if(event.target===this)closePdf()"><span class="close-modal" onclick="closePdf()">&times;</span><iframe id="pdfFrame"></iframe></div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('js-loaded');
-        const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)});
-        const hamburger=document.getElementById('hamburger');const navLinks=document.getElementById('navLinks');hamburger.addEventListener('click',()=>navLinks.classList.toggle('open'));navLinks.querySelectorAll('a').forEach(l=>l.addEventListener('click',()=>navLinks.classList.remove('open')));
-        window.addEventListener('scroll',()=>{const sections=document.querySelectorAll('section[id]');const links=document.querySelectorAll('.nav-links a');let cur='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)cur=s.id});links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur))});
-        const track=document.getElementById('carouselTrack');const slides=track.querySelectorAll('.carousel-slide');const prevBtn=document.getElementById('prevBtn');const nextBtn=document.getElementById('nextBtn');const currentDisplay=document.getElementById('currentSlide');const dotsContainer=document.getElementById('carouselDots');let current=0;const total=slides.length;
-        for(let i=0;i<total;i++){const dot=document.createElement('button');dot.classList.add('carousel-dot');if(i===0)dot.classList.add('active');dot.addEventListener('click',()=>goTo(i));dotsContainer.appendChild(dot)}
-        function goTo(index){current=index;track.style.transform='translateX(-'+current*100+'%)';currentDisplay.textContent=current+1;document.querySelectorAll('.carousel-dot').forEach((d,i)=>d.classList.toggle('active',i===current))}
-        prevBtn.addEventListener('click',()=>goTo((current-1+total)%total));nextBtn.addEventListener('click',()=>goTo((current+1)%total));
-        let touchStartX=0;track.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX},{passive:true});track.addEventListener('touchend',e=>{const diff=touchStartX-e.changedTouches[0].screenX;if(Math.abs(diff)>50){diff>0?goTo((current+1)%total):goTo((current-1+total)%total)}},{passive:true});
-        document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')goTo((current-1+total)%total);if(e.key==='ArrowRight')goTo((current+1)%total)});
-        function openModal(p){document.getElementById('certificationModal').style.display='block';document.getElementById('modalImage').src=p;document.body.style.overflow='hidden'}
-        function openImgModal(svgEl){var s=new XMLSerializer().serializeToString(svgEl);var b64='data:image/svg+xml;base64,'+btoa(unescape(encodeURIComponent(s)));document.getElementById('certificationModal').style.display='block';document.getElementById('modalImage').src=b64;document.body.style.overflow='hidden'}
-        function closeModal(){document.getElementById('certificationModal').style.display='none';document.body.style.overflow=''}
-        function openPdf(url){document.getElementById('pdfModal').style.display='block';document.getElementById('pdfFrame').src=url;document.body.style.overflow='hidden'}
-        function closePdf(){document.getElementById('pdfModal').style.display='none';document.getElementById('pdfFrame').src='';document.body.style.overflow=''}
-        document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closePdf()}});
-        const reveals=document.querySelectorAll('.reveal');const observer=ne
+
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        });
+
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); });
+        var allNavLinks = navLinks.querySelectorAll('a');
+        for (var i = 0; i < allNavLinks.length; i++) {
+            allNavLinks[i].addEventListener('click', function() { navLinks.classList.remove('open'); });
+        }
+
+        window.addEventListener('scroll', function() {
+            var sections = document.querySelectorAll('section[id]');
+            var links = document.querySelectorAll('.nav-links a');
+            var cur = '';
+            sections.forEach(function(s) { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+            links.forEach(function(l) { l.classList.toggle('active', l.getAttribute('href') === '#' + cur); });
+        });
+
+        var track = document.getElementById('carouselTrack');
+        if (!track) return;
+        var slides = track.querySelectorAll('.carousel-slide');
+        var prevBtn = document.getElementById('prevBtn');
+        var nextBtn = document.getElementById('nextBtn');
+        var currentDisplay = document.getElementById('currentSlide');
+        var dotsContainer = document.getElementById('carouselDots');
+        var current = 0;
+        var total = slides.length;
+
+        for (var i = 0; i < total; i++) {
+            var dot = document.createElement('button');
+            dot.classList.add('carousel-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('data-index', i);
+            dot.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-index'))); });
+            dotsContainer.appendChild(dot);
+        }
+
+        function goTo(index) {
+            current = index;
+            track.style.transform = 'translateX(-' + (current * 100) + '%)';
+            currentDisplay.textContent = current + 1;
+            var dots = document.querySelectorAll('.carousel-dot');
+            for (var j = 0; j < dots.length; j++) {
+                dots[j].classList.toggle('active', j === current);
+            }
+        }
+
+        prevBtn.addEventListener('click', function() { goTo((current - 1 + total) % total); });
+        nextBtn.addEventListener('click', function() { goTo((current + 1) % total); });
+
+        var touchStartX = 0;
+        track.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+        track.addEventListener('touchend', function(e) {
+            var diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? goTo((current + 1) % total) : goTo((current - 1 + total) % total);
+            }
+        }, {passive: true});
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') goTo((current - 1 + total) % total);
+            if (e.key === 'ArrowRight') goTo((current + 1) % total);
+            if (e.key === 'Escape') { closeModal(); closePdf(); }
+        });
+
+        var reveals = document.querySelectorAll('.reveal');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.08, rootMargin: '0px 0px -30px 0px'});
+        reveals.forEach(function(el) { observer.observe(el); });
+    });
+
+    function openModal(p) {
+        document.getElementById('certificationModal').style.display = 'block';
+        document.getElementById('modalImage').src = p;
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('certificationModal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    function openPdf(url) {
+        document.getElementById('pdfModal').style.display = 'block';
+        document.getElementById('pdfFrame').src = url;
+        document.body.style.overflow = 'hidden';
+    }
+    function closePdf() {
+        document.getElementById('pdfModal').style.display = 'none';
+        document.getElementById('pdfFrame').src = '';
+        document.body.style.overflow = '';
+    }
+    </script>
+</body>
+</html>
